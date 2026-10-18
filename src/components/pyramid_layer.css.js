@@ -50,29 +50,6 @@ styles.replaceSync(/* css */ `
     text-decoration: line-through;
     opacity: 0.6;
   }
-  button {
-    border: 0;
-    border-radius: 8px;
-    background: rgb(128 128 128 / 0.2);
-    color: inherit;
-    cursor: pointer;
-    font: inherit;
-    padding: 4px 10px;
-  }
-  form {
-    display: flex;
-    gap: 8px;
-  }
-  input[type="text"] {
-    flex: 1;
-    min-width: 0;
-    border: 1px solid rgb(128 128 128 / 0.35);
-    border-radius: 8px;
-    padding: 6px 10px;
-    font: inherit;
-    background: transparent;
-    color: inherit;
-  }
 `);
 
 export default styles;

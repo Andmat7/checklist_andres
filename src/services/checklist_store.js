@@ -1,20 +1,21 @@
-import { default_layers, merge_saved } from '../models/layer.js';
+import { create_daily_checks } from '../models/daily_checks.js';
 
-const storage_key = 'pyramid_checklist';
+const storage_key = 'daily_checks';
 
 export class ChecklistStore {
-  load() {
+  load(day) {
     // Storage can be blocked (private mode); the checklist still works for the session.
     try {
-      return merge_saved(default_layers, JSON.parse(localStorage.getItem(storage_key) ?? '[]'));
+      const saved = JSON.parse(localStorage.getItem(storage_key));
+      return saved?.day === day ? saved : create_daily_checks(day);
     } catch {
-      return structuredClone(default_layers);
+      return create_daily_checks(day);
     }
   }
 
-  save(layers) {
+  save(checks) {
     try {
-      localStorage.setItem(storage_key, JSON.stringify(layers));
+      localStorage.setItem(storage_key, JSON.stringify(checks));
     } catch {
       // Same reason as load: losing persistence must not break the page.
     }

@@ -8,7 +8,7 @@ const hues_by_depth = [
 ];
 
 export class PyramidStack extends HTMLElement {
-  #day;
+  #checks;
   #depth;
   #layer_count;
 
@@ -17,8 +17,8 @@ export class PyramidStack extends HTMLElement {
     this.attachShadow({ mode: 'open' }).adoptedStyleSheets = [styles];
   }
 
-  show(layers, day, depth = 0) {
-    this.#day = day;
+  show(layers, checks, depth = 0) {
+    this.#checks = checks;
     this.#depth = depth;
     this.#layer_count = layers.length;
     const top_first = [...layers].reverse();
@@ -31,7 +31,7 @@ export class PyramidStack extends HTMLElement {
     // Narrower toward the top so the stack reads as a pyramid.
     element.style.setProperty('--layer-width', `${60 + (40 * (position + 1)) / this.#layer_count}%`);
     element.style.setProperty('--layer-hue', hues[(this.#layer_count - 1 - position) % hues.length]);
-    element.show(layer, this.#day, this.#depth);
+    element.show(layer, this.#checks, this.#depth);
     return element;
   }
 }

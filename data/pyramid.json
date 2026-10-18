@@ -1,0 +1,14 @@
+{
+  "layers": [
+    {
+      "title": "Andres",
+      "layers": [
+        { "title": "Sueño", "tasks": ["Dormir 7-8 horas", "Acostarme antes de las 11 pm"] },
+        { "title": "Dieta", "tasks": ["Tomar 2 litros de agua", "Comer verduras"] },
+        { "title": "Ejercicio", "tasks": ["30 minutos de ejercicio"] }
+      ]
+    },
+    { "title": "Finanzas", "tasks": ["Registrar los gastos del día", "Evitar compras impulsivas"] },
+    { "title": "Relaciones", "tasks": ["Hablar con alguien que quiero", "Agradecer a alguien"] }
+  ]
+}
