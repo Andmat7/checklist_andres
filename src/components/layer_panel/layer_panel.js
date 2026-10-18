@@ -1,8 +1,17 @@
-import { is_checked } from '../models/daily_checks.js';
-import { count_checked } from '../models/layer.js';
-import { escape_html } from '../services/escape_html.js';
-import styles from './pyramid_layer.css.js';
-import './pyramid_stack.js';
+import { is_checked } from '../../models/daily_checks.js';
+import { escape_html } from '../../services/escape_html.js';
+import styles from './layer_panel.css.js';
+import '../pyramid/pyramid_view.js';
+
+const hint_template = /* html */ `<p class="hint">Toca una capa para ver sus tareas</p>`;
+
+// A layer holding an inner pyramid shows that pyramid; a leaf layer shows its tasks.
+const template = (layer) => /* html */ `
+  <section>
+    <h2>${escape_html(layer.title)}</h2>
+    ${layer.tasks.length ? '<ul></ul>' : ''}
+    ${layer.layers.length ? '<pyramid-view></pyramid-view>' : ''}
+  </section>`;
 
 const task_template = (task, checks) => /* html */ `
   <li class="${is_checked(checks, task.id) ? 'done' : ''}">
@@ -12,20 +21,9 @@ const task_template = (task, checks) => /* html */ `
     </label>
   </li>`;
 
-// A layer holding an inner pyramid shows that pyramid; a leaf layer shows its tasks.
-const template = (layer, checks) => /* html */ `
-  <section>
-    <header>
-      <h2>${escape_html(layer.title)}</h2>
-      ${layer.tasks.length ? `<span class="progress">${count_checked(layer, checks)}/${layer.tasks.length}</span>` : ''}
-    </header>
-    ${layer.layers.length ? '<pyramid-stack></pyramid-stack>' : ''}
-    ${layer.tasks.length ? `<ul>${layer.tasks.map((task) => task_template(task, checks)).join('')}</ul>` : ''}
-  </section>`;
-
-export class PyramidLayer extends HTMLElement {
+/** Shows the selected layer's tasks; emits `task-toggle` when one is checked or unchecked. */
+export class LayerPanel extends HTMLElement {
   #layer;
-  #depth;
 
   constructor() {
     super();
@@ -33,22 +31,24 @@ export class PyramidLayer extends HTMLElement {
     this.shadowRoot.addEventListener('change', (event) => this.#on_change(event));
   }
 
-  show(layer, checks, depth) {
+  show(layer, checks, { depth, color }) {
+    // Rebuilding only on a new layer keeps the inner pyramid's own selection across check updates.
+    if (layer?.id !== this.#layer?.id || !this.shadowRoot.firstChild) {
+      this.shadowRoot.innerHTML = layer ? template(layer) : hint_template;
+    }
     this.#layer = layer;
-    this.#depth = depth;
-    this.shadowRoot.innerHTML = template(layer, checks);
-    this.shadowRoot.querySelector('pyramid-stack')?.show(layer.layers, checks, depth + 1);
-  }
-
-  update(checks) {
-    this.show(this.#layer, checks, this.#depth);
+    if (!layer) return;
+    this.style.setProperty('--layer-color', color);
+    const list = this.shadowRoot.querySelector('ul');
+    if (list) list.innerHTML = layer.tasks.map((task) => task_template(task, checks)).join('');
+    this.shadowRoot.querySelector('pyramid-view')?.show(layer.layers, checks, depth + 1);
   }
 
   #on_change(event) {
     if (event.target.type !== 'checkbox') return;
     const options = { detail: this.#toggle_detail(event.target), bubbles: true, composed: true };
     this.dispatchEvent(new CustomEvent('task-toggle', options));
-    // The toggle re-renders this layer synchronously, so restore keyboard focus on the same task.
+    // The toggle re-renders the list synchronously, so restore keyboard focus on the same task.
     this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
   }
 
@@ -66,4 +66,4 @@ export class PyramidLayer extends HTMLElement {
   }
 }
 
-customElements.define('pyramid-layer', PyramidLayer);
+customElements.define('layer-panel', LayerPanel);

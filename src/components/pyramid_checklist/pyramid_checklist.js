@@ -1,14 +1,14 @@
-import { create_daily_checks, toggle_check } from '../models/daily_checks.js';
-import { ChecklistStore } from '../services/checklist_store.js';
-import { load_pyramid } from '../services/pyramid_source.js';
-import { today } from '../services/today.js';
+import { create_daily_checks, toggle_check } from '../../models/daily_checks.js';
+import { ChecklistStore } from '../../services/checklist_store.js';
+import { load_pyramid } from '../../services/pyramid_source.js';
+import { today } from '../../services/today.js';
 import styles from './pyramid_checklist.css.js';
-import './pyramid_stack.js';
+import '../pyramid/pyramid_view.js';
 
 const template = /* html */ `
   <h1>Mi pirámide diaria</h1>
   <p></p>
-  <pyramid-stack></pyramid-stack>`;
+  <pyramid-view></pyramid-view>`;
 
 export class PyramidChecklist extends HTMLElement {
   #store = new ChecklistStore();
@@ -35,17 +35,15 @@ export class PyramidChecklist extends HTMLElement {
   }
 
   #render() {
-    this.shadowRoot.querySelector('pyramid-stack').show(this.#layers, this.#checks);
+    this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks);
   }
 
   #toggle(event) {
-    const is_new_day = this.#checks.day !== today();
-    const checks = is_new_day ? create_daily_checks(today()) : this.#checks;
+    const checks = this.#checks.day === today() ? this.#checks : create_daily_checks(today());
     this.#checks = toggle_check(checks, event.detail.task_id);
     this.#store.save(this.#checks);
-    // A new day clears every layer, so redraw all of them; otherwise only the clicked one.
-    if (is_new_day) this.#render();
-    else event.composedPath()[0].update(this.#checks);
+    // Progress shows on every enclosing layer, so the whole pyramid redraws.
+    this.#render();
   }
 }
 

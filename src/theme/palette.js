@@ -9,3 +9,9 @@ export const apex_colors = ['#ffd166', '#f7a541'];
 export const star_colors = ['#ffffff', '#ffd166', '#c9b8ff'];
 
 export const sparkle_colors = ['#ffd166', '#ffffff'];
+
+/** Each nesting depth has its own gradient; positions count from the base. */
+export function layer_color(depth, base_position) {
+  const colors = layer_colors_by_depth[depth % layer_colors_by_depth.length];
+  return colors[base_position % colors.length];
+}

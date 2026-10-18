@@ -1,5 +1,5 @@
 import { prefers_reduced_motion } from './services/motion.js';
-import './components/pyramid_checklist.js';
+import './components/pyramid_checklist/pyramid_checklist.js';
 
 const task_burst = 18;
 const layer_complete_burst = 60;

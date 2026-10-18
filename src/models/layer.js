@@ -22,6 +22,11 @@ export function parse_layer(source, parent_id = '') {
   };
 }
 
+/** Tasks of the layer and of every layer in its inner pyramid. */
+export function all_tasks(layer) {
+  return [...layer.tasks, ...layer.layers.flatMap(all_tasks)];
+}
+
 export function count_checked(layer, checks) {
-  return layer.tasks.filter((task) => is_checked(checks, task.id)).length;
+  return all_tasks(layer).filter((task) => is_checked(checks, task.id)).length;
 }

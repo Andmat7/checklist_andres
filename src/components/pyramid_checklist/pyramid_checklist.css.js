@@ -1,4 +1,4 @@
-import { apex_colors, layer_colors_by_depth } from '../theme/palette.js';
+import { apex_colors, layer_colors_by_depth } from '../../theme/palette.js';
 
 const styles = new CSSStyleSheet();
 
