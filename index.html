@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
   <title>Pirámide Diaria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: light dark;
-      --background: #fafaf7;
-      --text: #1d1d1f;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --background: #161618;
-        --text: #f2f2f2;
-        --layer-lightness: 24%;
-      }
+      color-scheme: dark;
+      --background: #0b0d12;
+      --text: #e9eaf0;
+      --muted: #8b8fa3;
     }
     body {
       margin: 0;
-      background: var(--background);
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 0%, #1a1d2b 0%, var(--background) 60%) fixed;
       color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: "Manrope", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
   </style>
   <script type="module" src="src/main.js"></script>
