@@ -10,6 +10,7 @@ styles.replaceSync(/* css */ `
     background: hsl(var(--layer-hue) 70% var(--layer-lightness, 92%));
     border-radius: 14px;
     padding: 14px 16px;
+    border: 1px solid rgb(128 128 128 / 0.25);
   }
   header {
     display: flex;
@@ -19,6 +20,9 @@ styles.replaceSync(/* css */ `
   h2 {
     margin: 0;
     font-size: 1.15rem;
+  }
+  pyramid-stack {
+    margin-top: 12px;
   }
   .progress {
     font-variant-numeric: tabular-nums;

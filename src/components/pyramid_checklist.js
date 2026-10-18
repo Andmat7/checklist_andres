@@ -1,15 +1,13 @@
-import { add_task, remove_task, toggle_task } from '../models/layer.js';
+import { add_task, all_layers, remove_task, toggle_task, update_layer } from '../models/layer.js';
 import { ChecklistStore } from '../services/checklist_store.js';
 import { today } from '../services/today.js';
 import styles from './pyramid_checklist.css.js';
-import './pyramid_layer.js';
+import './pyramid_stack.js';
 
 const template = /* html */ `
   <h1>Mi pirámide diaria</h1>
   <p></p>
-  <div class="pyramid"></div>`;
-
-const layer_hues = [210, 150, 35];
+  <pyramid-stack></pyramid-stack>`;
 
 export class PyramidChecklist extends HTMLElement {
   #store = new ChecklistStore();
@@ -24,9 +22,7 @@ export class PyramidChecklist extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.querySelector('p').textContent = new Date().toLocaleDateString('es', { dateStyle: 'full' });
-    const top_first = [...this.#layers].reverse();
-    const elements = top_first.map((layer, position) => this.#create_layer(layer, position));
-    this.shadowRoot.querySelector('.pyramid').replaceChildren(...elements);
+    this.shadowRoot.querySelector('pyramid-stack').show(this.#layers, today());
   }
 
   #listen() {
@@ -36,26 +32,17 @@ export class PyramidChecklist extends HTMLElement {
       'task-remove': (layer, detail) => remove_task(layer, detail.task_id),
     };
     for (const [name, change] of Object.entries(changes)) {
-      this.shadowRoot.addEventListener(name, (event) => this.#update_layer(event.detail, change));
+      this.shadowRoot.addEventListener(name, (event) => this.#apply(event, change));
     }
   }
 
-  #update_layer(detail, change) {
-    this.#layers = this.#layers.map((layer) => (layer.id === detail.layer_id ? change(layer, detail) : layer));
+  #apply(event, change) {
+    const { layer_id } = event.detail;
+    this.#layers = update_layer(this.#layers, layer_id, (layer) => change(layer, event.detail));
     this.#store.save(this.#layers);
-    const updated = this.#layers.find((layer) => layer.id === detail.layer_id);
-    this.shadowRoot.querySelector(`[data-layer-id="${detail.layer_id}"]`).show(updated, today());
-  }
-
-  #create_layer(layer, position) {
-    const element = document.createElement('pyramid-layer');
-    const layer_count = this.#layers.length;
-    // Narrower toward the top so the stack reads as a pyramid.
-    element.style.setProperty('--layer-width', `${60 + (40 * (position + 1)) / layer_count}%`);
-    element.style.setProperty('--layer-hue', layer_hues[(layer_count - 1 - position) % layer_hues.length]);
-    element.dataset.layerId = layer.id;
-    element.show(layer, today());
-    return element;
+    const updated = all_layers(this.#layers).find((layer) => layer.id === layer_id);
+    // Re-render only the emitting layer so the rest of the pyramid keeps its focus and scroll.
+    event.composedPath()[0].update(updated, today());
   }
 }
 

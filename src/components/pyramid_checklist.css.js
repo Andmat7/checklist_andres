@@ -16,11 +16,6 @@ styles.replaceSync(/* css */ `
     margin: 0 0 20px;
     opacity: 0.7;
   }
-  .pyramid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
 `);
 
 export default styles;

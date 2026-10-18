@@ -2,6 +2,7 @@ import { count_done } from '../models/layer.js';
 import { is_done_on } from '../models/task.js';
 import { escape_html } from '../services/escape_html.js';
 import styles from './pyramid_layer.css.js';
+import './pyramid_stack.js';
 
 const task_template = (task, day) => /* html */ `
   <li class="${is_done_on(task, day) ? 'done' : ''}" data-task-id="${task.id}">
@@ -12,21 +13,26 @@ const task_template = (task, day) => /* html */ `
     <button type="button" class="remove" aria-label="Eliminar">×</button>
   </li>`;
 
+const tasks_template = (layer, day) => /* html */ `
+  <ul>${layer.tasks.map((task) => task_template(task, day)).join('')}</ul>
+  <form>
+    <input type="text" name="title" placeholder="Nueva tarea" required>
+    <button type="submit" aria-label="Agregar">+</button>
+  </form>`;
+
+// A layer holding an inner pyramid shows that pyramid instead of its own task list.
 const template = (layer, day) => /* html */ `
   <section>
     <header>
       <h2>${escape_html(layer.title)}</h2>
-      <span class="progress">${count_done(layer, day)}/${layer.tasks.length}</span>
+      ${layer.layers.length ? '' : `<span class="progress">${count_done(layer, day)}/${layer.tasks.length}</span>`}
     </header>
-    <ul>${layer.tasks.map((task) => task_template(task, day)).join('')}</ul>
-    <form>
-      <input type="text" name="title" placeholder="Nueva tarea" required>
-      <button type="submit" aria-label="Agregar">+</button>
-    </form>
+    ${layer.layers.length ? '<pyramid-stack></pyramid-stack>' : tasks_template(layer, day)}
   </section>`;
 
 export class PyramidLayer extends HTMLElement {
   #layer;
+  #depth;
 
   constructor() {
     super();
@@ -36,9 +42,15 @@ export class PyramidLayer extends HTMLElement {
     this.shadowRoot.addEventListener('submit', (event) => this.#on_submit(event));
   }
 
-  show(layer, day) {
+  show(layer, day, depth) {
     this.#layer = layer;
+    this.#depth = depth;
     this.shadowRoot.innerHTML = template(layer, day);
+    this.shadowRoot.querySelector('pyramid-stack')?.show(layer.layers, day, depth + 1);
+  }
+
+  update(layer, day) {
+    this.show(layer, day, this.#depth);
   }
 
   #on_change(event) {
