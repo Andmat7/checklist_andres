@@ -46,10 +46,23 @@ export class PyramidLayer extends HTMLElement {
 
   #on_change(event) {
     if (event.target.type !== 'checkbox') return;
-    const options = { detail: { task_id: event.target.dataset.taskId }, bubbles: true, composed: true };
+    const options = { detail: this.#toggle_detail(event.target), bubbles: true, composed: true };
     this.dispatchEvent(new CustomEvent('task-toggle', options));
     // The toggle re-renders this layer synchronously, so restore keyboard focus on the same task.
     this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
+  }
+
+  /** Read before the re-render: where the checkbox sits and whether it completed the layer drive the sparkles. */
+  #toggle_detail(checkbox) {
+    const bounds = checkbox.getBoundingClientRect();
+    const checkboxes = [...this.shadowRoot.querySelectorAll('ul input[type="checkbox"]')];
+    return {
+      task_id: checkbox.dataset.taskId,
+      checked: checkbox.checked,
+      origin: { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 },
+      color: getComputedStyle(this).getPropertyValue('--layer-color').trim(),
+      layer_complete: checkboxes.every((box) => box.checked),
+    };
   }
 }
 

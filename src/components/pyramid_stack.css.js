@@ -1,3 +1,5 @@
+import { apex_colors } from '../theme/palette.js';
+
 const styles = new CSSStyleSheet();
 
 styles.replaceSync(/* css */ `
@@ -12,7 +14,8 @@ styles.replaceSync(/* css */ `
     width: var(--apex-width);
     height: 30px;
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    background: linear-gradient(180deg, hsl(var(--apex-hue) 90% 72%), hsl(var(--apex-hue) 70% 50%));
+    background: linear-gradient(180deg, ${apex_colors[0]}, ${apex_colors[1]});
+    filter: drop-shadow(0 0 12px ${apex_colors[0]});
   }
 `);
 

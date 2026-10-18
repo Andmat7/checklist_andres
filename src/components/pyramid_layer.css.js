@@ -2,22 +2,19 @@ const styles = new CSSStyleSheet();
 
 styles.replaceSync(/* css */ `
   :host {
-    --accent: hsl(var(--layer-hue) 85% 72%);
     display: block;
     width: var(--layer-width, 100%);
     margin-inline: auto;
+    filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--layer-color) 45%, transparent));
   }
   section {
     /* Inset of the top corners; content is padded by it so nothing gets clipped by the slanted sides. */
     --slant: calc((1 - var(--top-ratio, 1)) * 50%);
     clip-path: polygon(var(--slant) 0, calc(100% - var(--slant)) 0, 100% 100%, 0 100%);
-    background: linear-gradient(
-      180deg,
-      hsl(var(--layer-hue) 45% calc(var(--layer-lightness) + 6%)),
-      hsl(var(--layer-hue) 40% var(--layer-lightness))
-    );
+    background: linear-gradient(180deg, var(--layer-color), color-mix(in oklab, var(--layer-color), black 32%));
     padding: 12px calc(var(--slant) + 10px) 14px;
     text-align: center;
+    color: #ffffff;
   }
   header {
     display: flex;
@@ -27,20 +24,19 @@ styles.replaceSync(/* css */ `
   }
   h2 {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 800;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent);
+    text-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
   }
   .progress {
     font-size: 0.72rem;
-    font-weight: 700;
+    font-weight: 800;
     font-variant-numeric: tabular-nums;
     padding: 1px 8px;
     border-radius: 999px;
-    color: hsl(var(--layer-hue) 40% 12%);
-    background: var(--accent);
+    background: rgb(0 0 0 / 0.28);
   }
   pyramid-stack {
     margin-top: 8px;
@@ -58,8 +54,10 @@ styles.replaceSync(/* css */ `
     display: flex;
     gap: 8px;
     align-items: flex-start;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     line-height: 1.3;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
     cursor: pointer;
   }
   input[type="checkbox"] {
@@ -68,21 +66,21 @@ styles.replaceSync(/* css */ `
     width: 17px;
     height: 17px;
     margin: 1px 0 0;
-    border: 2px solid var(--accent);
+    border: 2px solid rgb(255 255 255 / 0.9);
     border-radius: 50%;
     cursor: pointer;
   }
   input[type="checkbox"]:checked {
-    background: var(--accent);
-    box-shadow: inset 0 0 0 3px hsl(var(--layer-hue) 40% var(--layer-lightness));
+    background: #ffffff;
+    box-shadow: inset 0 0 0 3px var(--layer-color);
   }
   input[type="checkbox"]:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid #ffffff;
     outline-offset: 2px;
   }
   li.done span {
     text-decoration: line-through;
-    opacity: 0.5;
+    opacity: 0.6;
   }
 `);
 
