@@ -2,9 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pirámide Diaria</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #fafaf7;
+      --text: #1d1d1f;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #161618;
+        --text: #f2f2f2;
+        --layer-lightness: 24%;
+      }
+    }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+  </style>
+  <script type="module" src="src/main.js"></script>
 </head>
 <body>
-  <h1>Hello World</h1>
+  <pyramid-checklist></pyramid-checklist>
 </body>
 </html>
