@@ -1,4 +1,4 @@
-import { create_daily_checks } from '../models/daily_checks.js';
+import { create_daily_checks } from '../../models/daily_checks.js';
 
 const storage_key = 'daily_checks';
 

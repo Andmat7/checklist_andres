@@ -1,5 +1,6 @@
-import { is_checked } from '../../models/daily_checks.js';
+import { is_checked } from '../../models/checks.js';
 import { escape_html } from '../../services/escape_html.js';
+import { format_price } from '../../services/money.js';
 import styles from './layer_panel.css.js';
 import '../pyramid/pyramid_view.js';
 
@@ -18,6 +19,7 @@ const task_template = (task, checks) => /* html */ `
     <label>
       <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''}>
       <span>${escape_html(task.title)}</span>
+      ${task.price === undefined ? '' : `<span class="price">${format_price(task.price)}</span>`}
     </label>
   </li>`;
 

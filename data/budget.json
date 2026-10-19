@@ -1,0 +1,111 @@
+{
+  "layers": [
+    {
+      "title": "Servicios",
+      "tasks": [
+        { "title": "Agua", "price": 200000 },
+        { "title": "Luz", "price": 200000 },
+        { "title": "Internet", "price": 170000 },
+        { "title": "Gas", "price": 60000 }
+      ]
+    },
+    {
+      "title": "Mercado",
+      "layers": [
+        {
+          "title": "Verduras",
+          "tasks": [
+            { "title": "Verduras", "price": 35000 },
+            { "title": "Frutas", "price": 35000 },
+            { "title": "Carbohidratos", "price": 30000 },
+            { "title": "Cebolla, tomate y pimentón", "price": 18000 },
+            { "title": "Ajo", "price": 5000 }
+          ]
+        },
+        {
+          "title": "Carnes",
+          "tasks": [
+            { "title": "Pechuga", "price": 48000 },
+            { "title": "Colombinas", "price": 48000 },
+            { "title": "Chuleta", "price": 48000 },
+            { "title": "Carne roja", "price": 48000 },
+            { "title": "Pierna", "price": 24000 },
+            { "title": "Lomo", "price": 24000 }
+          ]
+        },
+        {
+          "title": "Salsamentaria",
+          "tasks": [
+            { "title": "Huevos", "price": 90000 },
+            { "title": "Leche", "price": 30000 },
+            { "title": "Queso", "price": 20000 },
+            { "title": "Yogurt", "price": 10000 }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Supermercado",
+      "layers": [
+        {
+          "title": "Despensa",
+          "tasks": [
+            { "title": "Arroz", "price": 8000 },
+            { "title": "Granos", "price": 35000 },
+            { "title": "Pasta", "price": 4000 },
+            { "title": "Harinas", "price": 30000 },
+            { "title": "Arepa de maíz", "price": 10000 },
+            { "title": "Avena", "price": 8000 },
+            { "title": "Tortillas", "price": 12000 },
+            { "title": "Atún", "price": 20000 },
+            { "title": "Aceite", "price": 50000 },
+            { "title": "Condimentos", "price": 20000 },
+            { "title": "Vinagre", "price": 10000 }
+          ]
+        },
+        {
+          "title": "Aseo",
+          "layers": [
+            {
+              "title": "Ropa",
+              "tasks": [
+                { "title": "Jabón de lavadora", "price": 60000 },
+                { "title": "Jabón", "price": 48000 },
+                { "title": "Decol", "price": 20000 }
+              ]
+            },
+            {
+              "title": "Cocina",
+              "tasks": [
+                { "title": "Jabón de loza", "price": 20000 },
+                { "title": "Esponja", "price": 20000 },
+                { "title": "Bolsas de basura", "price": 20000 },
+                { "title": "Papel absorbente", "price": 12000 },
+                { "title": "Quitagrasa", "price": 10000 }
+              ]
+            },
+            {
+              "title": "Baño",
+              "tasks": [
+                { "title": "Papel higiénico", "price": 20000 },
+                { "title": "Toallas", "price": 15000 }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Personal",
+          "tasks": [
+            { "title": "Jabón de bañarse", "price": 20000 },
+            { "title": "Shampoo", "price": 20000 },
+            { "title": "Bloqueador", "price": 30000 },
+            { "title": "Desodorante", "price": 10000 },
+            { "title": "Crema dental", "price": 12000 },
+            { "title": "Crema de peinar", "price": 12000 },
+            { "title": "Cepillo", "price": 6000 }
+          ]
+        }
+      ]
+    }
+  ]
+}

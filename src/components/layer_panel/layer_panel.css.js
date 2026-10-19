@@ -64,6 +64,13 @@ styles.replaceSync(/* css */ `
     outline: 2px solid #ffffff;
     outline-offset: 2px;
   }
+  .price {
+    margin-left: auto;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    opacity: 0.8;
+  }
   li.done span {
     text-decoration: line-through;
     opacity: 0.6;

@@ -1,6 +1,6 @@
 import { prefers_reduced_motion } from './services/motion.js';
 import { disable_cache } from './services/no_cache.js';
-import './components/pyramid_checklist/pyramid_checklist.js';
+import './components/app_shell/app_shell.js';
 
 const task_burst = 18;
 const layer_complete_burst = 60;

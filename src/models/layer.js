@@ -1,8 +1,9 @@
-import { is_checked } from './daily_checks.js';
+import { is_checked } from './checks.js';
+import { parse_task } from './task.js';
 
 /**
  * @typedef {import('./task.js').Task} Task
- * @typedef {import('./daily_checks.js').DailyChecks} DailyChecks
+ * @typedef {import('./checks.js').Checks} Checks
  * @typedef {Object} Layer
  * @property {string} id Title path, e.g. "/Andres/Sueño".
  * @property {string} title
@@ -17,7 +18,7 @@ export function parse_layer(source, parent_id = '') {
   return {
     id,
     title: source.title,
-    tasks: (source.tasks ?? []).map((title) => ({ id: `${id}/${title}`, title })),
+    tasks: (source.tasks ?? []).map((task) => parse_task(task, id)),
     layers: (source.layers ?? []).map((layer) => parse_layer(layer, id)),
   };
 }
@@ -29,4 +30,11 @@ export function all_tasks(layer) {
 
 export function count_checked(layer, checks) {
   return all_tasks(layer).filter((task) => is_checked(checks, task.id)).length;
+}
+
+/** Keeps only the matching tasks and drops the layers left empty. */
+export function filter_layers(layers, keep_task) {
+  return layers
+    .map((layer) => ({ ...layer, tasks: layer.tasks.filter(keep_task), layers: filter_layers(layer.layers, keep_task) }))
+    .filter((layer) => all_tasks(layer).length > 0);
 }

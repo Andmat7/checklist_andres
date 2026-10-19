@@ -1,5 +1,6 @@
-import { create_daily_checks, toggle_check } from '../../models/daily_checks.js';
-import { ChecklistStore } from '../../services/checklist_store.js';
+import { toggle_check } from '../../models/checks.js';
+import { create_daily_checks } from '../../models/daily_checks.js';
+import { ChecklistStore } from '../../services/storage/checklist_store.js';
 import { load_pyramid } from '../../services/pyramid_source.js';
 import { today } from '../../services/today.js';
 import styles from './pyramid_checklist.css.js';
@@ -26,7 +27,7 @@ export class PyramidChecklist extends HTMLElement {
     const subtitle = this.shadowRoot.querySelector('p');
     subtitle.textContent = new Date().toLocaleDateString('es', { dateStyle: 'full' });
     try {
-      this.#layers = await load_pyramid();
+      this.#layers = await load_pyramid('pyramid.json');
     } catch (error) {
       subtitle.textContent = 'No se pudo cargar data/pyramid.json';
       throw error;

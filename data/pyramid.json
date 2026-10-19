@@ -3,18 +3,57 @@
     {
       "title": "Andres",
       "layers": [
-        { "title": "Sueño", "tasks": ["CPAP", "Potes", "Diálisis", "Medicinas", "Agua"] },
+        {
+          "title": "Sueño",
+          "tasks": [
+            "CPAP",
+            "Potes",
+            "Diálisis",
+            "Medicinas",
+            "Agua"
+          ]
+        },
         {
           "title": "Dieta",
           "layers": [
-            { "title": "Desayuno", "tasks": ["Proteína", "Fibra"] },
-            { "title": "Almuerzo", "tasks": ["Proteína", "Verdura"] }
+            {
+              "title": "Desayuno",
+              "tasks": [
+                "Proteína",
+                "Fibra"
+              ]
+            },
+            {
+              "title": "Almuerzo",
+              "tasks": [
+                "Proteína",
+                "Verdura"
+              ]
+            }
           ]
         },
-        { "title": "Ejercicio", "tasks": ["Sentadillas", "Ejercicios de brazo"] }
+        {
+          "title": "Ejercicio",
+          "tasks": [
+            "Sentadillas",
+            "Ejercicios de brazo"
+          ]
+        }
       ]
     },
-    { "title": "Finanzas", "tasks": ["Registrar los gastos del día", "Evitar compras impulsivas"] },
-    { "title": "Relaciones", "tasks": ["Hablar con alguien que quiero", "Agradecer a alguien"] }
+    {
+      "title": "Finanzas",
+      "tasks": [
+        "Registrar los gastos del día",
+        "Evitar compras impulsivas"
+      ]
+    },
+    {
+      "title": "Relaciones",
+      "tasks": [
+        "Hablar con alguien que quiero",
+        "Agradecer a alguien"
+      ]
+    }
   ]
 }
