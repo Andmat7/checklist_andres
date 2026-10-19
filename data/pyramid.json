@@ -3,9 +3,15 @@
     {
       "title": "Andres",
       "layers": [
-        { "title": "Sueño", "tasks": ["Dormir 7-8 horas", "Acostarme antes de las 11 pm"] },
-        { "title": "Dieta", "tasks": ["Tomar 2 litros de agua", "Comer verduras"] },
-        { "title": "Ejercicio", "tasks": ["30 minutos de ejercicio"] }
+        { "title": "Sueño", "tasks": ["CPAP", "Potes", "Diálisis", "Medicinas", "Agua"] },
+        {
+          "title": "Dieta",
+          "layers": [
+            { "title": "Desayuno", "tasks": ["Proteína", "Fibra"] },
+            { "title": "Almuerzo", "tasks": ["Proteína", "Verdura"] }
+          ]
+        },
+        { "title": "Ejercicio", "tasks": ["Sentadillas", "Ejercicios de brazo"] }
       ]
     },
     { "title": "Finanzas", "tasks": ["Registrar los gastos del día", "Evitar compras impulsivas"] },
