@@ -16,10 +16,13 @@
         },
         {
           "title": "Dieta",
-          "tasks": [
-            "Seguridad biológica"
-          ],
           "layers": [
+            {
+              "title": "Seguridad",
+              "tasks": [
+                "Seguridad biológica"
+              ]
+            },
             {
               "title": "Desayuno",
               "tasks": [
