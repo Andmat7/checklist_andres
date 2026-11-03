@@ -10,11 +10,15 @@
             "Potes",
             "Diálisis",
             "Medicinas",
-            "Agua"
+            "Agua",
+            "Controles remoto"
           ]
         },
         {
           "title": "Dieta",
+          "tasks": [
+            "Seguridad biológica"
+          ],
           "layers": [
             {
               "title": "Desayuno",
