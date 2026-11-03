@@ -1,6 +1,7 @@
 import styles from './app_shell.css.js';
 import '../pyramid_checklist/pyramid_checklist.js';
 import '../budget_planner/budget_planner.js';
+import '../countdown_timer/countdown_timer.js';
 
 const default_section = 'diaria';
 
@@ -8,9 +9,11 @@ const template = /* html */ `
   <nav>
     <a href="#diaria" data-section="diaria">Diaria</a>
     <a href="#presupuesto" data-section="presupuesto">Presupuesto</a>
+    <a href="#cronometro" data-section="cronometro">Cronómetro</a>
   </nav>
   <pyramid-checklist data-section="diaria"></pyramid-checklist>
-  <budget-planner data-section="presupuesto"></budget-planner>`;
+  <budget-planner data-section="presupuesto"></budget-planner>
+  <countdown-timer data-section="cronometro"></countdown-timer>`;
 
 /** The section lives in the URL hash, so a reload keeps you where you were. */
 export class AppShell extends HTMLElement {
