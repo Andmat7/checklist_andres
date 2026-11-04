@@ -24,6 +24,14 @@
               ]
             },
             {
+              "title": "Leguminosas",
+              "tasks": [
+                "Revisar si hay cocinadas",
+                "Revisar si hay en agua",
+                "Revisar si hay compradas"
+              ]
+            },
+            {
               "title": "Desayuno",
               "tasks": [
                 "Proteína",
