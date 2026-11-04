@@ -33,7 +33,8 @@ const template = /* html */ `
   <div class="controls">
     <button type="button" class="reset">Reiniciar</button>
     <button type="button" class="toggle"></button>
-  </div>`;
+  </div>
+  <a class="standalone_link" href="cronometro.html">Abrir solo el cronómetro</a>`;
 
 /** Counts down to a deadline instead of counting ticks, so a throttled tab or a dimmed phone still ends on time. */
 export class CountdownTimer extends HTMLElement {

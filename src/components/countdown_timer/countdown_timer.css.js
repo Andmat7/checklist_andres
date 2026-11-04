@@ -123,6 +123,25 @@ styles.replaceSync(/* css */ `
     background: linear-gradient(135deg, ${apex_colors[0]}, ${apex_colors[1]});
     color: #2a1d4a;
   }
+  .standalone_link {
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .standalone_link:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+  /* Already on the standalone page, so the link would only point back at itself. */
+  :host([standalone]) .standalone_link {
+    display: none;
+  }
   :host([data-state="paused"]) .time {
     opacity: 0.6;
   }
