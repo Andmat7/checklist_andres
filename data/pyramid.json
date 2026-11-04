@@ -26,9 +26,17 @@
             {
               "title": "Leguminosas",
               "tasks": [
-                "Revisar si hay cocinadas",
-                "Revisar si hay en agua",
-                "Revisar si hay compradas"
+                "¿Cocinadas?",
+                "¿En agua?",
+                "¿Compradas?"
+              ]
+            },
+            {
+              "title": "Carnes",
+              "tasks": [
+                "¿Cocinadas?",
+                "¿Descongeladas?",
+                "¿Compradas?"
               ]
             },
             {
