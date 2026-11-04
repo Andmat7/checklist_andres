@@ -32,17 +32,15 @@ export function count_checked(layer, checks) {
   return all_tasks(layer).filter((task) => is_checked(checks, task.id)).length;
 }
 
-/** Ids of the pyramids with every task checked: the whole one ("/") and each layer that holds an inner pyramid. */
-export function completed_pyramid_ids(layers, checks) {
-  const whole_pyramid = { id: '/', tasks: [], layers };
-  return [whole_pyramid, ...layers.flatMap(inner_pyramids)]
-    .filter((pyramid) => count_checked(pyramid, checks) === all_tasks(pyramid).length)
-    .map((pyramid) => pyramid.id);
+/** Ids of every layer, at any depth, whose tasks are all checked. */
+export function completed_layer_ids(layers, checks) {
+  return layers.flatMap(all_layers)
+    .filter((layer) => all_tasks(layer).length > 0 && count_checked(layer, checks) === all_tasks(layer).length)
+    .map((layer) => layer.id);
 }
 
-function inner_pyramids(layer) {
-  const nested = layer.layers.flatMap(inner_pyramids);
-  return layer.layers.length ? [layer, ...nested] : nested;
+function all_layers(layer) {
+  return [layer, ...layer.layers.flatMap(all_layers)];
 }
 
 /** Keeps only the matching tasks and drops the layers left empty. */

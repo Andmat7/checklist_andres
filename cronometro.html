@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0a1a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Cronómetro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0b0a1a;
+      --text: #f4f2ff;
+      --muted: #a59cc9;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 0%, #2a1d4a 0%, #15122b 45%, var(--background) 100%) fixed;
+      color: var(--text);
+      font-family: "Manrope", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <script type="module" src="src/components/countdown_timer/countdown_timer.js"></script>
+</head>
+<body>
+  <countdown-timer></countdown-timer>
+</body>
+</html>
