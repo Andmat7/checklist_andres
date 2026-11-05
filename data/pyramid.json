@@ -4,6 +4,12 @@
       "title": "Andres",
       "layers": [
         {
+          "title": "Ejercicio",
+          "tasks": [
+            "Ejercicio"
+          ]
+        },
+        {
           "title": "Sueño",
           "tasks": [
             "CPAP",
@@ -53,13 +59,6 @@
                 "Verdura"
               ]
             }
-          ]
-        },
-        {
-          "title": "Ejercicio",
-          "tasks": [
-            "Sentadillas",
-            "Ejercicios de brazo"
           ]
         }
       ]
