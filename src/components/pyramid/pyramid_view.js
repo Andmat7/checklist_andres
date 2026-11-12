@@ -1,4 +1,4 @@
-import { layer_color } from '../../theme/palette.js';
+import { color_of_layer } from '../../theme/palette.js';
 import styles from './pyramid_view.css.js';
 import './pyramid_stack.js';
 import '../layer_panel/layer_panel.js';
@@ -35,7 +35,7 @@ export class PyramidView extends HTMLElement {
 
   #render() {
     const selected = this.#layers.find((layer) => layer.id === this.#selected_id);
-    const color = selected && layer_color(this.#depth, this.#layers.indexOf(selected));
+    const color = selected && color_of_layer(selected, this.#depth, this.#layers.indexOf(selected));
     const context = { depth: this.#depth, selected_id: selected?.id };
     this.shadowRoot.querySelector('pyramid-stack').show(this.#layers, this.#checks, context);
     this.shadowRoot.querySelector('layer-panel').show(selected, this.#checks, { depth: this.#depth, color });

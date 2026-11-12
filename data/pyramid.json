@@ -5,6 +5,7 @@
       "layers": [
         {
           "title": "Ejercicio",
+          "color": "#ffd166",
           "tasks": [
             "Una sentadilla",
             "Un ejercicio de brazo",
@@ -21,6 +22,15 @@
             "Medicinas",
             "Agua",
             "Controles remoto"
+          ]
+        },
+        {
+          "title": "Ejercicio 2",
+          "color": "#ffd166",
+          "tasks": [
+            "Una sentadilla",
+            "Un ejercicio de brazo",
+            "¿Quieres hacer más?"
           ]
         },
         {
@@ -62,6 +72,15 @@
                 "Verdura"
               ]
             }
+          ]
+        },
+        {
+          "title": "Ejercicio 3",
+          "color": "#ffd166",
+          "tasks": [
+            "Una sentadilla",
+            "Un ejercicio de brazo",
+            "¿Quieres hacer más?"
           ]
         }
       ]

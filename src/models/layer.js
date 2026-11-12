@@ -9,18 +9,20 @@ import { parse_task } from './task.js';
  * @property {string} title
  * @property {Task[]} tasks
  * @property {Layer[]} layers Inner pyramid, ordered from its base to its top.
+ * @property {string} [color] Overrides the gradient color, e.g. "#ffd166".
  */
 
 /** Ids come from the title path, so the JSON only needs titles. */
 export function parse_layer(source, parent_id = '') {
   if (!source.title) throw new Error(`Layer without title under "${parent_id || 'root'}"`);
   const id = `${parent_id}/${source.title}`;
-  return {
+  const layer = {
     id,
     title: source.title,
     tasks: (source.tasks ?? []).map((task) => parse_task(task, id)),
-    layers: (source.layers ?? []).map((layer) => parse_layer(layer, id)),
+    layers: (source.layers ?? []).map((inner_layer) => parse_layer(inner_layer, id)),
   };
+  return source.color === undefined ? layer : { ...layer, color: source.color };
 }
 
 /** Tasks of the layer and of every layer in its inner pyramid. */

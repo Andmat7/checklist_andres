@@ -1,6 +1,6 @@
 import { all_tasks, count_checked } from '../../models/layer.js';
 import { escape_html } from '../../services/escape_html.js';
-import { layer_color } from '../../theme/palette.js';
+import { color_of_layer } from '../../theme/palette.js';
 import styles from './pyramid_stack.css.js';
 
 const row_height = 64;
@@ -32,7 +32,10 @@ export class PyramidStack extends HTMLElement {
       + top_first.map((layer) => layer_template(layer, checks, selected_id)).join('');
     const rows = [...this.shadowRoot.querySelectorAll('.row')];
     rows.forEach((row, index) => shape_row(row, index, rows.length));
-    rows.slice(1).forEach((row, index) => row.style.setProperty('--layer-color', layer_color(depth, layers.length - 1 - index)));
+    rows.slice(1).forEach((row, index) => {
+      const layer = top_first[index];
+      row.style.setProperty('--layer-color', color_of_layer(layer, depth, layers.length - 1 - index));
+    });
   }
 
   #on_click(event) {

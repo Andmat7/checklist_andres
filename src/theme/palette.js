@@ -15,3 +15,8 @@ export function layer_color(depth, base_position) {
   const colors = layer_colors_by_depth[depth % layer_colors_by_depth.length];
   return colors[base_position % colors.length];
 }
+
+/** A layer can name its own color in the JSON; otherwise it takes its gradient slot. */
+export function color_of_layer(layer, depth, base_position) {
+  return layer.color ?? layer_color(depth, base_position);
+}
