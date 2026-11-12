@@ -20,3 +20,13 @@ export function layer_color(depth, base_position) {
 export function color_of_layer(layer, depth, base_position) {
   return layer.color ?? layer_color(depth, base_position);
 }
+
+const dark_text = '#1a1333';
+const light_text = '#ffffff';
+
+/** Light backgrounds get dark text; the threshold is where white text on the color stops reading well. */
+export function text_color_on(hex_background) {
+  const [red, green, blue] = [1, 3, 5].map((start) => parseInt(hex_background.slice(start, start + 2), 16) / 255);
+  const brightness = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  return brightness > 0.6 ? dark_text : light_text;
+}

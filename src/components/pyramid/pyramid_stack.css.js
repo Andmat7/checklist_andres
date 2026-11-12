@@ -31,7 +31,7 @@ styles.replaceSync(/* css */ `
     padding: 0;
     border: 0;
     background: linear-gradient(180deg, var(--layer-color), color-mix(in oklab, var(--layer-color), black 32%));
-    color: #ffffff;
+    color: var(--layer-text, #ffffff);
     font: inherit;
     cursor: pointer;
     transition: filter 0.2s, opacity 0.2s;
@@ -56,6 +56,14 @@ styles.replaceSync(/* css */ `
     letter-spacing: 0.14em;
     text-transform: uppercase;
     text-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+  }
+  /* A third-height slice cannot fit two lines, so its title and count share one. */
+  .thin {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .thin .title {
+    font-size: 0.62rem;
   }
   .progress {
     font-size: 0.7rem;

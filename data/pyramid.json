@@ -6,6 +6,7 @@
         {
           "title": "Ejercicio",
           "color": "#ffd166",
+          "height_ratio": 0.33,
           "tasks": [
             "Una sentadilla",
             "Un ejercicio de brazo",
@@ -27,6 +28,7 @@
         {
           "title": "Ejercicio 2",
           "color": "#ffd166",
+          "height_ratio": 0.33,
           "tasks": [
             "Una sentadilla",
             "Un ejercicio de brazo",
@@ -77,6 +79,7 @@
         {
           "title": "Ejercicio 3",
           "color": "#ffd166",
+          "height_ratio": 0.33,
           "tasks": [
             "Una sentadilla",
             "Un ejercicio de brazo",
