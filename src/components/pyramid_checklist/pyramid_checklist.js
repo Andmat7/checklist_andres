@@ -2,14 +2,17 @@ import { toggle_check } from '../../models/checks.js';
 import { create_daily_checks } from '../../models/daily_checks.js';
 import { completed_layer_ids } from '../../models/layer.js';
 import { ChecklistStore } from '../../services/storage/checklist_store.js';
+import { current_period } from '../../services/day_period.js';
 import { load_pyramid } from '../../services/pyramid_source.js';
 import { today } from '../../services/today.js';
 import styles from './pyramid_checklist.css.js';
 import { VictoryFanfare } from './victory_fanfare.js';
 import '../pyramid/pyramid_view.js';
 
+const titles = { day: 'Mi pirámide de día', night: 'Mi pirámide de noche' };
+
 const template = /* html */ `
-  <h1>Mi pirámide diaria</h1>
+  <h1>${titles[current_period()]}</h1>
   <p></p>
   <pyramid-view></pyramid-view>`;
 
@@ -29,10 +32,11 @@ export class PyramidChecklist extends HTMLElement {
   async connectedCallback() {
     const subtitle = this.shadowRoot.querySelector('p');
     subtitle.textContent = new Date().toLocaleDateString('es', { dateStyle: 'full' });
+    const file_name = `pyramid_${current_period()}.json`;
     try {
-      this.#layers = await load_pyramid('pyramid.json');
+      this.#layers = await load_pyramid(file_name);
     } catch (error) {
-      subtitle.textContent = 'No se pudo cargar data/pyramid.json';
+      subtitle.textContent = `No se pudo cargar data/${file_name}`;
       throw error;
     }
     this.#render();

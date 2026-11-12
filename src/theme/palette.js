@@ -1,12 +1,32 @@
-/** Sunset at the top fading into night at the base, so every layer belongs to one gradient. Base first. */
-export const layer_colors_by_depth = [
-  ['#4b3a9a', '#a8437a', '#d9594c'],
-  ['#2f5a9e', '#3f62c4', '#5a4cc8'],
-];
+import { current_period } from '../services/day_period.js';
+
+const themes = {
+  /** Sunrise at the top over a clear morning sky at the base. Base first. */
+  day: {
+    layer_colors_by_depth: [
+      ['#1c7ed6', '#0c8599', '#e8590c'],
+      ['#1971c2', '#3b5bdb', '#0b7285'],
+    ],
+    star_colors: ['#ffffff', '#ffe8a3', '#bde0fe'],
+  },
+  /** Sunset at the top fading into night at the base, so every layer belongs to one gradient. Base first. */
+  night: {
+    layer_colors_by_depth: [
+      ['#4b3a9a', '#a8437a', '#d9594c'],
+      ['#2f5a9e', '#3f62c4', '#5a4cc8'],
+    ],
+    star_colors: ['#ffffff', '#ffd166', '#c9b8ff'],
+  },
+};
+
+// The period is fixed at load, so the theme matches the pyramid shown until the next reload.
+const theme = themes[current_period()];
+
+export const layer_colors_by_depth = theme.layer_colors_by_depth;
 
 export const apex_colors = ['#ffd166', '#f7a541'];
 
-export const star_colors = ['#ffffff', '#ffd166', '#c9b8ff'];
+export const star_colors = theme.star_colors;
 
 export const sparkle_colors = ['#ffd166', '#ffffff'];
 

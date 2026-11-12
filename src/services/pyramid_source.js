@@ -1,6 +1,6 @@
 import { parse_layer } from '../models/layer.js';
 
-/** Loads a pyramid from data/, e.g. "pyramid.json". */
+/** Loads a pyramid from data/, e.g. "pyramid_day.json". */
 export async function load_pyramid(file_name) {
   const pyramid_url = new URL(`../../data/${file_name}`, import.meta.url);
   const response = await fetch(pyramid_url);
