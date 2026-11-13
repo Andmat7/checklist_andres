@@ -19,7 +19,8 @@
             "Aplicar lavado nasal",
             "CPAP",
             "Diálisis",
-            "Medicinas"
+            "Desempacar potes",
+            "Poner potes"
           ]
         },
         {
@@ -37,8 +38,7 @@
           "tasks": [
             "Agua",
             "Controles remoto",
-            "Desempacar potes",
-            "Poner potes"
+            "Medicinas"
           ]
         },
         {
