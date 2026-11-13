@@ -1,21 +1,20 @@
 import { current_period } from '../services/day_period.js';
 
+// Sunset at the top fading into night at the base, so every layer belongs to one gradient. Base first.
+const purple_layer_colors_by_depth = [
+  ['#4b3a9a', '#a8437a', '#d9594c'],
+  ['#2f5a9e', '#3f62c4', '#5a4cc8'],
+];
+const purple_star_colors = ['#ffffff', '#ffd166', '#c9b8ff'];
+
 const themes = {
-  /** Sunrise at the top over a clear morning sky at the base. Base first. */
   day: {
-    layer_colors_by_depth: [
-      ['#1c7ed6', '#0c8599', '#e8590c'],
-      ['#1971c2', '#3b5bdb', '#0b7285'],
-    ],
-    star_colors: ['#ffffff', '#ffe8a3', '#bde0fe'],
+    layer_colors_by_depth: purple_layer_colors_by_depth,
+    star_colors: purple_star_colors,
   },
-  /** Sunset at the top fading into night at the base, so every layer belongs to one gradient. Base first. */
   night: {
-    layer_colors_by_depth: [
-      ['#4b3a9a', '#a8437a', '#d9594c'],
-      ['#2f5a9e', '#3f62c4', '#5a4cc8'],
-    ],
-    star_colors: ['#ffffff', '#ffd166', '#c9b8ff'],
+    layer_colors_by_depth: purple_layer_colors_by_depth,
+    star_colors: purple_star_colors,
   },
 };
 
