@@ -14,16 +14,31 @@
           ]
         },
         {
-          "title": "Sueño",
+          "title": "Sueño 1",
           "tasks": [
             "Aplicar lavado nasal",
             "CPAP",
-            "Desempacar potes",
-            "Poner potes",
             "Diálisis",
-            "Medicinas",
+            "Medicinas"
+          ]
+        },
+        {
+          "title": "Tapa de ejercicio",
+          "color": "#ffd166",
+          "height_ratio": 0.33,
+          "tasks": [
+            "Una sentadilla",
+            "Un ejercicio de brazo",
+            "¿Quieres hacer más?"
+          ]
+        },
+        {
+          "title": "Sueño 2",
+          "tasks": [
             "Agua",
-            "Controles remoto"
+            "Controles remoto",
+            "Desempacar potes",
+            "Poner potes"
           ]
         },
         {
