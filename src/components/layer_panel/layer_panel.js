@@ -29,18 +29,23 @@ const start_template = (task, checks) => {
     <button type="button" class="start" data-start-id="${escape_html(task.id)}" ${started ? 'disabled' : ''} aria-label="${label}">${started ?? '▶'}</button>`;
 };
 
+// Starting and completing happen in order: a task is completed only after it was started, so every done task has
+// both times. Tasks checked before starts existed stay editable so they can be unchecked.
+const is_locked = (task, checks) => checks.starts !== undefined && !checks.starts[task.id] && !is_checked(checks, task.id);
+const lock = (task, checks) => (is_locked(task, checks) ? 'disabled' : '');
+
 const numbers_template = (task, checks) => /* html */ `
   <li class="numbers">
     ${start_template(task, checks)}
     <span>${escape_html(task.title)}</span>
     <span class="fields">
-      ${task.inputs.map((label) => number_template(task.id, label, checks.entries?.[task.id]?.values?.[label])).join('')}
+      ${task.inputs.map((label) => number_template(task, label, checks)).join('')}
     </span>
   </li>`;
 
-const number_template = (task_id, label, value) => /* html */ `
-  <input type="number" inputmode="numeric" min="0" data-task-id="${escape_html(task_id)}" data-label="${escape_html(label)}"
-    placeholder="${escape_html(label)}" aria-label="${escape_html(label)}" value="${value ?? ''}">`;
+const number_template = (task, label, checks) => /* html */ `
+  <input type="number" inputmode="numeric" min="0" data-task-id="${escape_html(task.id)}" data-label="${escape_html(label)}"
+    placeholder="${escape_html(label)}" aria-label="${escape_html(label)}" value="${checks.entries?.[task.id]?.values?.[label] ?? ''}" ${lock(task, checks)}>`;
 
 // Shopping checks carry no entries, so the first option is the fallback answer.
 const answer_template = (task, checks) => /* html */ `
@@ -48,7 +53,7 @@ const answer_template = (task, checks) => /* html */ `
     ${start_template(task, checks)}
     <label>
       <span>${escape_html(task.title)}</span>
-      <select data-task-id="${escape_html(task.id)}">
+      <select data-task-id="${escape_html(task.id)}" ${lock(task, checks)}>
         ${task.options.map((option) => option_template(option, checks.entries?.[task.id]?.answer ?? task.options[0])).join('')}
       </select>
     </label>
@@ -61,7 +66,7 @@ const checkbox_template = (task, checks) => /* html */ `
   <li class="${is_checked(checks, task.id) ? 'done' : ''}">
     ${start_template(task, checks)}
     <label>
-      <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''}>
+      <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''} ${lock(task, checks)}>
       <span>${escape_html(task.title)}</span>
       ${task.price === undefined ? '' : `<span class="price">${format_price(task.price)}</span>`}
     </label>

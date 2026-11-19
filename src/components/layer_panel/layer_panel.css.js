@@ -64,6 +64,15 @@ styles.replaceSync(/* css */ `
     opacity: 0.7;
     cursor: default;
   }
+  li:has(:is(input, select):disabled) label,
+  li:has(:is(input, select):disabled) > span:not(.fields) {
+    cursor: default;
+    opacity: 0.45;
+  }
+  .fields input:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
   .start:focus-visible {
     outline: 2px solid #ffffff;
     outline-offset: 2px;
