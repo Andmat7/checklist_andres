@@ -1,4 +1,4 @@
-import { check_task, create_daily_checks, uncheck_task } from '../../models/daily_checks.js';
+import { check_task, create_daily_checks, start_task, uncheck_task } from '../../models/daily_checks.js';
 import { completed_layer_ids } from '../../models/layer.js';
 import { ChecklistStore } from '../../services/storage/checklist_store.js';
 import { current_period } from '../../services/day_period.js';
@@ -33,6 +33,7 @@ export class PyramidChecklist extends HTMLElement {
     this.attachShadow({ mode: 'open' }).adoptedStyleSheets = [styles];
     this.shadowRoot.innerHTML = template;
     this.shadowRoot.addEventListener('task-toggle', (event) => this.#toggle(event));
+    this.shadowRoot.addEventListener('task-start', (event) => this.#start(event.detail.task_id));
   }
 
   async connectedCallback() {
@@ -52,7 +53,14 @@ export class PyramidChecklist extends HTMLElement {
 
   #render() {
     this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks);
-    this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history(), this.#store.load_entries());
+    this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history(), this.#store.load_entries(), this.#store.load_starts());
+  }
+
+  #start(task_id) {
+    const checks = this.#checks.day === today() ? this.#checks : create_daily_checks(today());
+    this.#checks = start_task(checks, task_id, clock_time(new Date()));
+    this.#store.save(this.#checks);
+    this.#render();
   }
 
   #toggle(event) {

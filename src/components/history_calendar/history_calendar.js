@@ -20,13 +20,14 @@ const template = /* html */ `
 export class HistoryCalendar extends HTMLElement {
   #history = {};
   #entries = {};
+  #starts = {};
   #task_ids = [];
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' }).adoptedStyleSheets = [styles];
     this.shadowRoot.innerHTML = template;
-    this.shadowRoot.querySelector('button').addEventListener('click', () => download_json({ checks: this.#history, entries: this.#entries }, `historial_${today()}.json`));
+    this.shadowRoot.querySelector('button').addEventListener('click', () => download_json({ checks: this.#history, entries: this.#entries, starts: this.#starts }, `historial_${today()}.json`));
   }
 
   async connectedCallback() {
@@ -35,10 +36,11 @@ export class HistoryCalendar extends HTMLElement {
     this.#render();
   }
 
-  /** `entries` holds the time and answer of each task, exported with the checks for later analysis. */
-  show(history, entries) {
+  /** `entries` holds the time and answer of each task and `starts` when it was read, exported with the checks for later analysis. */
+  show(history, entries, starts) {
     this.#history = history;
     this.#entries = entries;
+    this.#starts = starts;
     this.#render();
   }
 

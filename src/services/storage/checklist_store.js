@@ -5,11 +5,12 @@ const storage_key = 'checks_history';
 const legacy_key = 'daily_checks';
 // Times and answers live apart from the history, so its shape and the calendar stay as they were.
 const entries_key = 'task_entries';
+const starts_key = 'task_starts';
 
 /** Every day is kept, so past days can be shown and exported. */
 export class ChecklistStore {
   load(day) {
-    return { ...checks_of_day(this.load_history(), day), entries: this.load_entries()[day] ?? {} };
+    return { ...checks_of_day(this.load_history(), day), entries: this.load_entries()[day] ?? {}, starts: this.load_starts()[day] ?? {} };
   }
 
   load_history() {
@@ -32,10 +33,20 @@ export class ChecklistStore {
     }
   }
 
+  /** When each task was read, by ISO day, e.g. { "2026-11-20": { "/Andres/Despertar/Poner café": "09:31" } }. */
+  load_starts() {
+    try {
+      return JSON.parse(localStorage.getItem(starts_key)) ?? {};
+    } catch {
+      return {};
+    }
+  }
+
   save(checks) {
     try {
       localStorage.setItem(storage_key, JSON.stringify(record_day(this.load_history(), checks)));
       localStorage.setItem(entries_key, JSON.stringify({ ...this.load_entries(), [checks.day]: checks.entries }));
+      localStorage.setItem(starts_key, JSON.stringify({ ...this.load_starts(), [checks.day]: checks.starts }));
       localStorage.removeItem(legacy_key);
     } catch {
       // Same reason as load: losing persistence must not break the page.

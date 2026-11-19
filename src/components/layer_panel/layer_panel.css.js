@@ -37,6 +37,37 @@ styles.replaceSync(/* css */ `
     flex-direction: column;
     gap: 10px;
   }
+  li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  li > label {
+    flex: 1;
+  }
+  .start {
+    flex: none;
+    align-self: center;
+    min-width: 3.4em;
+    padding: 1px 6px;
+    border: 1px solid rgb(255 255 255 / 0.6);
+    border-radius: 999px;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+  .start:disabled {
+    border-color: transparent;
+    opacity: 0.7;
+    cursor: default;
+  }
+  .start:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
   label {
     display: flex;
     gap: 10px;

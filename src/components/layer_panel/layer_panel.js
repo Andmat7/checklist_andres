@@ -19,8 +19,19 @@ const task_template = (task, checks) => {
   return task.inputs ? numbers_template(task, checks) : checkbox_template(task, checks);
 };
 
+// Tapped when the task is read; it then shows that time, and checking the task stamps when it was done.
+// Shopping lists carry no starts, so they get no button.
+const start_template = (task, checks) => {
+  if (!checks.starts) return '';
+  const started = checks.starts[task.id];
+  const label = started ? `Leída a las ${started}` : `Empezar ${escape_html(task.title)}`;
+  return /* html */ `
+    <button type="button" class="start" data-start-id="${escape_html(task.id)}" ${started ? 'disabled' : ''} aria-label="${label}">${started ?? '▶'}</button>`;
+};
+
 const numbers_template = (task, checks) => /* html */ `
   <li class="numbers">
+    ${start_template(task, checks)}
     <span>${escape_html(task.title)}</span>
     <span class="fields">
       ${task.inputs.map((label) => number_template(task.id, label, checks.entries?.[task.id]?.values?.[label])).join('')}
@@ -34,6 +45,7 @@ const number_template = (task_id, label, value) => /* html */ `
 // Shopping checks carry no entries, so the first option is the fallback answer.
 const answer_template = (task, checks) => /* html */ `
   <li class="answer">
+    ${start_template(task, checks)}
     <label>
       <span>${escape_html(task.title)}</span>
       <select data-task-id="${escape_html(task.id)}">
@@ -47,6 +59,7 @@ const option_template = (option, answer) => /* html */ `
 
 const checkbox_template = (task, checks) => /* html */ `
   <li class="${is_checked(checks, task.id) ? 'done' : ''}">
+    ${start_template(task, checks)}
     <label>
       <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''}>
       <span>${escape_html(task.title)}</span>
@@ -54,7 +67,7 @@ const checkbox_template = (task, checks) => /* html */ `
     </label>
   </li>`;
 
-/** Shows the selected layer's tasks; emits `task-toggle` when one is checked or unchecked. */
+/** Shows the selected layer's tasks; emits `task-start` when one is read and `task-toggle` when one is checked or unchecked. */
 export class LayerPanel extends HTMLElement {
   #layer;
 
@@ -62,6 +75,7 @@ export class LayerPanel extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' }).adoptedStyleSheets = [styles];
     this.shadowRoot.addEventListener('change', (event) => this.#on_change(event));
+    this.shadowRoot.addEventListener('click', (event) => this.#on_start(event));
   }
 
   show(layer, checks, { depth, color }) {
@@ -87,6 +101,12 @@ export class LayerPanel extends HTMLElement {
     // The toggle re-renders the list synchronously, so restore keyboard focus on the same task; a number
     // field only changes on blur, when focus has already moved on, so it is left alone.
     if (event.target.type !== 'number') this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
+  }
+
+  #on_start(event) {
+    const button = event.target.closest('[data-start-id]');
+    if (!button || button.disabled) return;
+    this.dispatchEvent(new CustomEvent('task-start', { detail: { task_id: button.dataset.startId }, bubbles: true, composed: true }));
   }
 
   #task_fields(input) {
