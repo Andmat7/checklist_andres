@@ -65,10 +65,10 @@ export class PyramidChecklist extends HTMLElement {
 }
 
 /** Every check is stamped with the time, so the daily routine can be reviewed later. */
-function apply_toggle(checks, { task_id, checked, answer }) {
+function apply_toggle(checks, { task_id, checked, answer, values }) {
   if (!checked) return uncheck_task(checks, task_id);
   const time = clock_time(new Date());
-  return check_task(checks, task_id, answer === undefined ? { time } : { time, answer });
+  return check_task(checks, task_id, { time, ...(answer === undefined ? {} : { answer }), ...(values === undefined ? {} : { values }) });
 }
 
 customElements.define('pyramid-checklist', PyramidChecklist);

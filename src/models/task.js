@@ -4,13 +4,14 @@
  * @property {string} title
  * @property {number} [price] Only on things to buy, in pesos.
  * @property {string[]} [options] Answers to log instead of a checkbox; the first one means it was not done.
+ * @property {string[]} [inputs] Labels of numbers to log instead of a checkbox, e.g. a blood pressure reading.
  */
 
-/** In the JSON a task is a plain title, `{ title, price }` when it is something to buy, or `{ title, options }` to log an answer. */
+/** In the JSON a task is a plain title, `{ title, price }` when it is something to buy, `{ title, options }` to log an answer, or `{ title, inputs }` to log numbers. */
 export function parse_task(source, layer_id) {
-  const { title, price, options } = typeof source === 'string' ? { title: source } : source;
+  const { title, price, options, inputs } = typeof source === 'string' ? { title: source } : source;
   const task = { id: `${layer_id}/${title}`, title };
-  return { ...task, ...(price === undefined ? {} : { price }), ...(options === undefined ? {} : { options }) };
+  return { ...task, ...(price === undefined ? {} : { price }), ...(options === undefined ? {} : { options }), ...(inputs === undefined ? {} : { inputs }) };
 }
 
 export function total_price(tasks) {

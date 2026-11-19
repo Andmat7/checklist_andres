@@ -6,7 +6,9 @@
         {
           "title": "Despertar",
           "tasks": [
-            "Luz solar 10 min apenas me levante"
+            "Luz solar 10 min apenas me levante",
+            { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
+            { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
           ]
         },
         {

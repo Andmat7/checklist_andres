@@ -14,7 +14,22 @@ const template = (layer) => /* html */ `
     ${layer.layers.length ? '<pyramid-view></pyramid-view>' : ''}
   </section>`;
 
-const task_template = (task, checks) => (task.options ? answer_template(task, checks) : checkbox_template(task, checks));
+const task_template = (task, checks) => {
+  if (task.options) return answer_template(task, checks);
+  return task.inputs ? numbers_template(task, checks) : checkbox_template(task, checks);
+};
+
+const numbers_template = (task, checks) => /* html */ `
+  <li class="numbers">
+    <span>${escape_html(task.title)}</span>
+    <span class="fields">
+      ${task.inputs.map((label) => number_template(task.id, label, checks.entries?.[task.id]?.values?.[label])).join('')}
+    </span>
+  </li>`;
+
+const number_template = (task_id, label, value) => /* html */ `
+  <input type="number" inputmode="numeric" min="0" data-task-id="${escape_html(task_id)}" data-label="${escape_html(label)}"
+    placeholder="${escape_html(label)}" aria-label="${escape_html(label)}" value="${value ?? ''}">`;
 
 // Shopping checks carry no entries, so the first option is the fallback answer.
 const answer_template = (task, checks) => /* html */ `
@@ -64,10 +79,18 @@ export class LayerPanel extends HTMLElement {
 
   #on_change(event) {
     if (!event.target.dataset.taskId) return;
+    const fields = this.#task_fields(event.target);
+    // A half-typed reading waits for the rest; a re-render now would wipe what was typed.
+    if (fields.some(is_done) && !fields.every(is_done)) return;
     const options = { detail: this.#toggle_detail(event.target), bubbles: true, composed: true };
     this.dispatchEvent(new CustomEvent('task-toggle', options));
-    // The toggle re-renders the list synchronously, so restore keyboard focus on the same task.
-    this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
+    // The toggle re-renders the list synchronously, so restore keyboard focus on the same task; a number
+    // field only changes on blur, when focus has already moved on, so it is left alone.
+    if (event.target.type !== 'number') this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
+  }
+
+  #task_fields(input) {
+    return [...this.shadowRoot.querySelectorAll(`ul [data-task-id="${CSS.escape(input.dataset.taskId)}"]`)];
   }
 
   /** Read before the re-render: where the input sits and whether it completed the layer drive the sparkles. */
@@ -76,8 +99,9 @@ export class LayerPanel extends HTMLElement {
     const inputs = [...this.shadowRoot.querySelectorAll('ul [data-task-id]')];
     return {
       task_id: input.dataset.taskId,
-      checked: is_done(input),
+      checked: this.#task_fields(input).every(is_done),
       ...(input.tagName === 'SELECT' ? { answer: input.value } : {}),
+      ...(input.type === 'number' ? { values: field_values(this.#task_fields(input)) } : {}),
       origin: { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 },
       color: getComputedStyle(this).getPropertyValue('--layer-color').trim(),
       layer_complete: inputs.every(is_done),
@@ -87,7 +111,12 @@ export class LayerPanel extends HTMLElement {
 
 /** The first option of a select means "not done", so leaving it untouched never counts as an answer. */
 function is_done(input) {
-  return input.tagName === 'SELECT' ? input.selectedIndex > 0 : input.checked;
+  if (input.tagName === 'SELECT') return input.selectedIndex > 0;
+  return input.type === 'number' ? input.value !== '' : input.checked;
+}
+
+function field_values(fields) {
+  return Object.fromEntries(fields.map((field) => [field.dataset.label, Number(field.value)]));
 }
 
 customElements.define('layer-panel', LayerPanel);

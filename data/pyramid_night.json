@@ -5,7 +5,9 @@
       "tasks": [
         "Pasar carnes a la nevera",
         "Sacar la basura",
-        "Aplicar lavado nasal"
+        "Aplicar lavado nasal",
+        { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
+        { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
       ]
     }
   ]

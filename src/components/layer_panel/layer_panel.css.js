@@ -82,6 +82,41 @@ styles.replaceSync(/* css */ `
     outline: 2px solid #ffffff;
     outline-offset: 2px;
   }
+  li.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .fields {
+    display: flex;
+    gap: 6px;
+  }
+  input[type="number"] {
+    appearance: textfield;
+    width: 6.2em;
+    padding: 4px 6px;
+    border: 2px solid rgb(255 255 255 / 0.9);
+    border-radius: 10px;
+    background: rgb(11 10 26 / 0.6);
+    color: #ffffff;
+    font: inherit;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+  }
+  input[type="number"]::placeholder {
+    color: rgb(255 255 255 / 0.55);
+  }
+  input[type="number"]:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
   .price {
     margin-left: auto;
     font-size: 0.85rem;
