@@ -19,8 +19,8 @@
             "Aplicar lavado nasal",
             "CPAP",
             "Diálisis",
-            "Desempacar potes",
-            "Poner potes"
+            "Sacar y lavar potes",
+            "Lavar la cara"
           ]
         },
         {
@@ -38,7 +38,9 @@
           "tasks": [
             "Agua",
             "Controles remoto",
-            "Medicinas"
+            "Medicinas",
+            "Entrar potes",
+            "Alistar las chanclas"
           ]
         },
         {
