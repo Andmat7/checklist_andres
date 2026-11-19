@@ -7,6 +7,8 @@
           "title": "Despertar",
           "tasks": [
             { "title": "Cómo amanecí", "options": ["—", "1 Agotado", "2 Cansado", "3 Normal", "4 Bien", "5 Descansado"] },
+            { "title": "Dolor de cabeza", "options": ["—", "No", "Leve", "Fuerte"] },
+            { "title": "Ojos secos", "options": ["—", "No", "Sí"] },
             "Luz solar 10 min apenas me levante",
             "Poner café",
             { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
