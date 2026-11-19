@@ -16,16 +16,17 @@ const template = /* html */ `
   </div>
   <button type="button">Descargar historial</button>`;
 
-/** One square per day, brighter the more of both pyramids was checked; the export takes every day ever saved. */
+/** One square per day, brighter the more of both pyramids was checked; the export takes every day ever saved, with times. */
 export class HistoryCalendar extends HTMLElement {
   #history = {};
+  #entries = {};
   #task_ids = [];
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' }).adoptedStyleSheets = [styles];
     this.shadowRoot.innerHTML = template;
-    this.shadowRoot.querySelector('button').addEventListener('click', () => download_json(this.#history, `historial_${today()}.json`));
+    this.shadowRoot.querySelector('button').addEventListener('click', () => download_json({ checks: this.#history, entries: this.#entries }, `historial_${today()}.json`));
   }
 
   async connectedCallback() {
@@ -34,8 +35,10 @@ export class HistoryCalendar extends HTMLElement {
     this.#render();
   }
 
-  show(history) {
+  /** `entries` holds the time and answer of each task, exported with the checks for later analysis. */
+  show(history, entries) {
     this.#history = history;
+    this.#entries = entries;
     this.#render();
   }
 

@@ -14,7 +14,23 @@ const template = (layer) => /* html */ `
     ${layer.layers.length ? '<pyramid-view></pyramid-view>' : ''}
   </section>`;
 
-const task_template = (task, checks) => /* html */ `
+const task_template = (task, checks) => (task.options ? answer_template(task, checks) : checkbox_template(task, checks));
+
+// Shopping checks carry no entries, so the first option is the fallback answer.
+const answer_template = (task, checks) => /* html */ `
+  <li class="answer">
+    <label>
+      <span>${escape_html(task.title)}</span>
+      <select data-task-id="${escape_html(task.id)}">
+        ${task.options.map((option) => option_template(option, checks.entries?.[task.id]?.answer ?? task.options[0])).join('')}
+      </select>
+    </label>
+  </li>`;
+
+const option_template = (option, answer) => /* html */ `
+  <option ${option === answer ? 'selected' : ''}>${escape_html(option)}</option>`;
+
+const checkbox_template = (task, checks) => /* html */ `
   <li class="${is_checked(checks, task.id) ? 'done' : ''}">
     <label>
       <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''}>
@@ -47,25 +63,31 @@ export class LayerPanel extends HTMLElement {
   }
 
   #on_change(event) {
-    if (event.target.type !== 'checkbox') return;
+    if (!event.target.dataset.taskId) return;
     const options = { detail: this.#toggle_detail(event.target), bubbles: true, composed: true };
     this.dispatchEvent(new CustomEvent('task-toggle', options));
     // The toggle re-renders the list synchronously, so restore keyboard focus on the same task.
     this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
   }
 
-  /** Read before the re-render: where the checkbox sits and whether it completed the layer drive the sparkles. */
-  #toggle_detail(checkbox) {
-    const bounds = checkbox.getBoundingClientRect();
-    const checkboxes = [...this.shadowRoot.querySelectorAll('ul input[type="checkbox"]')];
+  /** Read before the re-render: where the input sits and whether it completed the layer drive the sparkles. */
+  #toggle_detail(input) {
+    const bounds = input.getBoundingClientRect();
+    const inputs = [...this.shadowRoot.querySelectorAll('ul [data-task-id]')];
     return {
-      task_id: checkbox.dataset.taskId,
-      checked: checkbox.checked,
+      task_id: input.dataset.taskId,
+      checked: is_done(input),
+      ...(input.tagName === 'SELECT' ? { answer: input.value } : {}),
       origin: { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 },
       color: getComputedStyle(this).getPropertyValue('--layer-color').trim(),
-      layer_complete: checkboxes.every((box) => box.checked),
+      layer_complete: inputs.every(is_done),
     };
   }
+}
+
+/** The first option of a select means "not done", so leaving it untouched never counts as an answer. */
+function is_done(input) {
+  return input.tagName === 'SELECT' ? input.selectedIndex > 0 : input.checked;
 }
 
 customElements.define('layer-panel', LayerPanel);

@@ -64,6 +64,24 @@ styles.replaceSync(/* css */ `
     outline: 2px solid #ffffff;
     outline-offset: 2px;
   }
+  li.answer label {
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
+  }
+  select {
+    padding: 4px 8px;
+    border: 2px solid rgb(255 255 255 / 0.9);
+    border-radius: 10px;
+    background: rgb(11 10 26 / 0.6);
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+  }
+  select:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
   .price {
     margin-left: auto;
     font-size: 0.85rem;

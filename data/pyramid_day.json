@@ -4,13 +4,26 @@
       "title": "Andres",
       "layers": [
         {
+          "title": "Despertar",
+          "tasks": [
+            "Luz solar 10 min apenas me levante"
+          ]
+        },
+        {
           "title": "Ejercicio",
           "color": "#ffd166",
           "height_ratio": 0.33,
           "tasks": [
-            "Una sentadilla",
-            "Un ejercicio de brazo",
-            "¿Quieres hacer más?"
+            {
+              "title": "Hice",
+              "options": [
+                "Nada",
+                "Flexiones",
+                "Sentadillas",
+                "Flexiones y sentadillas",
+                "Caminar"
+              ]
+            }
           ]
         },
         {
@@ -18,7 +31,7 @@
           "tasks": [
             "Aplicar lavado nasal",
             "CPAP",
-            "Diálisis",
+            "Alistar bolsas de diálisis",
             "Sacar y lavar potes",
             "Lavar la cara"
           ]
@@ -28,9 +41,16 @@
           "color": "#ffd166",
           "height_ratio": 0.33,
           "tasks": [
-            "Una sentadilla",
-            "Un ejercicio de brazo",
-            "¿Quieres hacer más?"
+            {
+              "title": "Hice",
+              "options": [
+                "Nada",
+                "Flexiones",
+                "Sentadillas",
+                "Flexiones y sentadillas",
+                "Caminar"
+              ]
+            }
           ]
         },
         {
@@ -48,9 +68,16 @@
           "color": "#ffd166",
           "height_ratio": 0.33,
           "tasks": [
-            "Una sentadilla",
-            "Un ejercicio de brazo",
-            "¿Quieres hacer más?"
+            {
+              "title": "Hice",
+              "options": [
+                "Nada",
+                "Flexiones",
+                "Sentadillas",
+                "Flexiones y sentadillas",
+                "Caminar"
+              ]
+            }
           ]
         },
         {
@@ -99,9 +126,16 @@
           "color": "#ffd166",
           "height_ratio": 0.33,
           "tasks": [
-            "Una sentadilla",
-            "Un ejercicio de brazo",
-            "¿Quieres hacer más?"
+            {
+              "title": "Hice",
+              "options": [
+                "Nada",
+                "Flexiones",
+                "Sentadillas",
+                "Flexiones y sentadillas",
+                "Caminar"
+              ]
+            }
           ]
         }
       ]

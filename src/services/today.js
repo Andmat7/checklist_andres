@@ -7,6 +7,11 @@ export function today() {
   return iso_day(now);
 }
 
+/** Local "HH:MM", the precision needed to see when each task gets done. */
+export function clock_time(date) {
+  return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+}
+
 /** Local calendar day, so days follow the user's clock rather than UTC's. */
 export function iso_day(date) {
   const month = String(date.getMonth() + 1).padStart(2, '0');

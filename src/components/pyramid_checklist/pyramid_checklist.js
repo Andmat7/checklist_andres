@@ -1,10 +1,9 @@
-import { toggle_check } from '../../models/checks.js';
-import { create_daily_checks } from '../../models/daily_checks.js';
+import { check_task, create_daily_checks, uncheck_task } from '../../models/daily_checks.js';
 import { completed_layer_ids } from '../../models/layer.js';
 import { ChecklistStore } from '../../services/storage/checklist_store.js';
 import { current_period } from '../../services/day_period.js';
 import { load_pyramid } from '../../services/pyramid_source.js';
-import { today } from '../../services/today.js';
+import { clock_time, today } from '../../services/today.js';
 import styles from './pyramid_checklist.css.js';
 import { VictoryFanfare } from './victory_fanfare.js';
 import '../history_calendar/history_calendar.js';
@@ -50,19 +49,26 @@ export class PyramidChecklist extends HTMLElement {
 
   #render() {
     this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks);
-    this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history());
+    this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history(), this.#store.load_entries());
   }
 
   #toggle(event) {
     const checks = this.#checks.day === today() ? this.#checks : create_daily_checks(today());
     const completed_before = completed_layer_ids(this.#layers, checks);
-    this.#checks = toggle_check(checks, event.detail.task_id);
+    this.#checks = apply_toggle(checks, event.detail);
     this.#store.save(this.#checks);
     // Progress shows on every enclosing layer, so the whole pyramid redraws.
     this.#render();
     const completed_now = completed_layer_ids(this.#layers, this.#checks);
     if (completed_now.some((layer_id) => !completed_before.includes(layer_id))) this.#fanfare.play();
   }
+}
+
+/** Every check is stamped with the time, so the daily routine can be reviewed later. */
+function apply_toggle(checks, { task_id, checked, answer }) {
+  if (!checked) return uncheck_task(checks, task_id);
+  const time = clock_time(new Date());
+  return check_task(checks, task_id, answer === undefined ? { time } : { time, answer });
 }
 
 customElements.define('pyramid-checklist', PyramidChecklist);
