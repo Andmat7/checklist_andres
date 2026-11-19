@@ -1,0 +1,11 @@
+{
+  "appId": "io.github.andmat7.piramide",
+  "appName": "Pirámide",
+  "webDir": "www",
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_pyramid",
+      "iconColor": "#ffd166"
+    }
+  }
+}

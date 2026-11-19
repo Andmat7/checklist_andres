@@ -1,0 +1,16 @@
+{
+  "reminders": [
+    {
+      "title": "Presión de la mañana",
+      "body": "Antes del café y el modafinilo: 2 tomas sentado.",
+      "time": "08:45",
+      "task_ids": ["/Andres/Despertar/Presión 1", "/Andres/Despertar/Presión 2"]
+    },
+    {
+      "title": "Presión de la noche",
+      "body": "Antes de acostarte: 2 tomas sentado.",
+      "time": "21:45",
+      "task_ids": ["/Andres/Presión 1", "/Andres/Presión 2"]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { completed_layer_ids } from '../../models/layer.js';
 import { ChecklistStore } from '../../services/storage/checklist_store.js';
 import { current_period } from '../../services/day_period.js';
 import { load_pyramid } from '../../services/pyramid_source.js';
+import { NativeReminders } from '../../services/reminders/native_reminders.js';
 import { clock_time, today } from '../../services/today.js';
 import styles from './pyramid_checklist.css.js';
 import { VictoryFanfare } from './victory_fanfare.js';
@@ -25,6 +26,7 @@ export class PyramidChecklist extends HTMLElement {
   #checks = this.#store.load(today());
   #layers = [];
   #fanfare = new VictoryFanfare();
+  #reminders = new NativeReminders();
 
   constructor() {
     super();
@@ -45,6 +47,7 @@ export class PyramidChecklist extends HTMLElement {
       throw error;
     }
     this.#render();
+    this.#sync_reminders();
   }
 
   #render() {
@@ -61,6 +64,12 @@ export class PyramidChecklist extends HTMLElement {
     this.#render();
     const completed_now = completed_layer_ids(this.#layers, this.#checks);
     if (completed_now.some((layer_id) => !completed_before.includes(layer_id))) this.#fanfare.play();
+    this.#sync_reminders();
+  }
+
+  /** A reminder is a nudge, so failing to schedule it only warns and the checklist keeps working. */
+  #sync_reminders() {
+    this.#reminders.sync(this.#checks).catch((error) => console.warn('Reminders disabled:', error));
   }
 }
 
