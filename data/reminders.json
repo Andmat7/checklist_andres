@@ -2,8 +2,8 @@
   "reminders": [
     {
       "title": "Presión de la mañana",
-      "body": "Antes del café y el modafinilo: 2 tomas sentado.",
-      "time": "08:45",
+      "body": "2 tomas sentado, tras 5 min de reposo.",
+      "time": "10:30",
       "task_ids": ["/Andres/Despertar/Presión 1", "/Andres/Despertar/Presión 2"]
     },
     {
