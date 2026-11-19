@@ -2,7 +2,7 @@
 
 const night_start_hour = 19;
 // Staying up past midnight is still the night routine, so night lasts until early morning.
-const morning_start_hour = 5;
+export const morning_start_hour = 5;
 
 const periods = ['day', 'night'];
 

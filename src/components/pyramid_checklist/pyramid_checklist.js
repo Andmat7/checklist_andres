@@ -7,6 +7,7 @@ import { load_pyramid } from '../../services/pyramid_source.js';
 import { today } from '../../services/today.js';
 import styles from './pyramid_checklist.css.js';
 import { VictoryFanfare } from './victory_fanfare.js';
+import '../history_calendar/history_calendar.js';
 import '../pyramid/pyramid_view.js';
 
 const titles = { day: 'Mi pirámide de día', night: 'Mi pirámide de noche' };
@@ -14,7 +15,8 @@ const titles = { day: 'Mi pirámide de día', night: 'Mi pirámide de noche' };
 const template = /* html */ `
   <h1>${titles[current_period()]}</h1>
   <p></p>
-  <pyramid-view></pyramid-view>`;
+  <pyramid-view></pyramid-view>
+  <history-calendar></history-calendar>`;
 
 export class PyramidChecklist extends HTMLElement {
   #store = new ChecklistStore();
@@ -31,7 +33,8 @@ export class PyramidChecklist extends HTMLElement {
 
   async connectedCallback() {
     const subtitle = this.shadowRoot.querySelector('p');
-    subtitle.textContent = new Date().toLocaleDateString('es', { dateStyle: 'full' });
+    // Noon keeps the date from shifting with the time zone; before 5 a.m. it still reads as the previous day.
+    subtitle.textContent = new Date(`${today()}T12:00`).toLocaleDateString('es', { dateStyle: 'full' });
     const file_name = `pyramid_${current_period()}.json`;
     try {
       this.#layers = await load_pyramid(file_name);
@@ -44,6 +47,7 @@ export class PyramidChecklist extends HTMLElement {
 
   #render() {
     this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks);
+    this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history());
   }
 
   #toggle(event) {
