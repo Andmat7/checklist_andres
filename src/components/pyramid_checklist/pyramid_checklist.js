@@ -11,10 +11,13 @@ import '../history_calendar/history_calendar.js';
 import '../pyramid/pyramid_view.js';
 
 const titles = { day: 'Mi pirámide de día', night: 'Mi pirámide de noche' };
+const period_names = { day: 'día', night: 'noche' };
+const other_period = current_period() === 'day' ? 'night' : 'day';
 
 const template = /* html */ `
   <h1>${titles[current_period()]}</h1>
   <p></p>
+  <a class="period_switch" href="?period=${other_period}">Ver pirámide de ${period_names[other_period]}</a>
   <pyramid-view></pyramid-view>
   <history-calendar></history-calendar>`;
 

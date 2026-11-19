@@ -30,6 +30,23 @@ styles.replaceSync(/* css */ `
   p::first-letter {
     text-transform: uppercase;
   }
+  .period_switch {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 24px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.1);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .period_switch:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
 `);
 
 export default styles;
