@@ -9,7 +9,8 @@
         { "title": "Clorfeniramina", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas"] },
         { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"] },
         { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
-        { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
+        { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
+        { "title": "Presión esposa", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
       ]
     }
   ]
