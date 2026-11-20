@@ -43,8 +43,9 @@ const numbers_template = (task, checks) => /* html */ `
     </span>
   </li>`;
 
+// The decimal keypad, since a weight like 98.6 needs the point that the numeric one lacks on Android.
 const number_template = (task, label, checks) => /* html */ `
-  <input type="number" inputmode="numeric" min="0" data-task-id="${escape_html(task.id)}" data-label="${escape_html(label)}"
+  <input type="number" inputmode="decimal" min="0" step="any" data-task-id="${escape_html(task.id)}" data-label="${escape_html(label)}"
     placeholder="${escape_html(label)}" aria-label="${escape_html(label)}" value="${checks.entries?.[task.id]?.values?.[label] ?? ''}" ${lock(task, checks)}>`;
 
 // Shopping checks carry no entries, so the first option is the fallback answer.

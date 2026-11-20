@@ -9,6 +9,7 @@
             { "title": "Cómo amanecí", "options": ["—", "1 Agotado", "2 Cansado", "3 Normal", "4 Bien", "5 Descansado"] },
             { "title": "Dolor de cabeza", "options": ["—", "No", "Leve", "Fuerte"] },
             { "title": "Ojos secos", "options": ["—", "No", "Sí"] },
+            { "title": "Peso", "inputs": ["Kg"] },
             "Luz solar 10 min apenas me levante",
             "Poner café",
             { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
@@ -116,7 +117,9 @@
               "title": "Desayuno",
               "tasks": [
                 "Proteína",
-                "Fibra"
+                "Fibra",
+                { "title": "Harinas", "options": ["—", "1", "2", "3 o más"] },
+                { "title": "Sueño 1 h después", "options": ["—", "0 Nada", "1 Leve", "2 Me cuesta concentrarme", "3 Necesito dormir"] }
               ]
             },
             {
