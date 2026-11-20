@@ -24,6 +24,18 @@
 
         </activity>
 
+        <!-- Health Connect refuses to ask for permissions unless the app can explain how it uses them. -->
+        <activity-alias
+            android:name=".HealthPermissionsUsage"
+            android:targetActivity=".MainActivity"
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+            </intent-filter>
+        </activity-alias>
+
         <receiver android:name=".BootReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -48,4 +60,8 @@
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <!-- Lets the daily alarm bring the app to the front from the background. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- The watch's data, written to Health Connect by Mi Fitness. -->
+    <uses-permission android:name="android.permission.health.READ_STEPS" />
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE" />
+    <uses-permission android:name="android.permission.health.READ_SLEEP" />
 </manifest>
