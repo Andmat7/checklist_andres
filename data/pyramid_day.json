@@ -120,7 +120,8 @@
                 "Proteína",
                 "Fibra",
                 { "title": "Harinas", "options": ["—", "1", "2", "3 o más"] },
-                { "title": "Sueño 1 h después", "options": ["—", "0 Nada", "1 Leve", "2 Me cuesta concentrarme", "3 Necesito dormir"] }
+                { "title": "Sueño 1 h después", "options": ["—", "0 Nada", "1 Leve", "2 Me cuesta concentrarme", "3 Necesito dormir"] },
+                { "title": "Siesta", "inputs": ["Minutos"], "note": "Antes de las 3 pm, con alarma de 20 min. Si no hiciste siesta, pon 0." }
               ]
             },
             {
