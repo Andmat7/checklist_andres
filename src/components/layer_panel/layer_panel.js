@@ -14,6 +14,9 @@ const template = (layer) => /* html */ `
     ${layer.layers.length ? '<pyramid-view></pyramid-view>' : ''}
   </section>`;
 
+const title_template = (task) => /* html */ `
+  <span>${escape_html(task.title)}${task.note ? `<small class="note">${escape_html(task.note)}</small>` : ''}</span>`;
+
 const task_template = (task, checks) => {
   if (task.options) return answer_template(task, checks);
   return task.inputs ? numbers_template(task, checks) : checkbox_template(task, checks);
@@ -37,7 +40,7 @@ const lock = (task, checks) => (is_locked(task, checks) ? 'disabled' : '');
 const numbers_template = (task, checks) => /* html */ `
   <li class="numbers">
     ${start_template(task, checks)}
-    <span>${escape_html(task.title)}</span>
+    ${title_template(task)}
     <span class="fields">
       ${task.inputs.map((label) => number_template(task, label, checks)).join('')}
     </span>
@@ -53,7 +56,7 @@ const answer_template = (task, checks) => /* html */ `
   <li class="answer">
     ${start_template(task, checks)}
     <label>
-      <span>${escape_html(task.title)}</span>
+      ${title_template(task)}
       <select data-task-id="${escape_html(task.id)}" ${lock(task, checks)}>
         ${task.options.map((option) => option_template(option, checks.entries?.[task.id]?.answer ?? task.options[0])).join('')}
       </select>
@@ -68,7 +71,7 @@ const checkbox_template = (task, checks) => /* html */ `
     ${start_template(task, checks)}
     <label>
       <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''} ${lock(task, checks)}>
-      <span>${escape_html(task.title)}</span>
+      ${title_template(task)}
       ${task.price === undefined ? '' : `<span class="price">${format_price(task.price)}</span>`}
     </label>
   </li>`;

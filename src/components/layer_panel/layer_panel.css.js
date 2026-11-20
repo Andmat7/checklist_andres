@@ -42,6 +42,12 @@ styles.replaceSync(/* css */ `
     gap: 8px;
     align-items: flex-start;
   }
+  .note {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.8;
+  }
   li > label {
     flex: 1;
   }
