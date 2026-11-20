@@ -10,7 +10,8 @@
         { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"] },
         { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
         { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
-        { "title": "Presión esposa", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
+        { "title": "Presión esposa", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
+        { "title": "Doble vaciado al acostarme", "note": "Sentado, inclinado hacia adelante, sin pujar. Al terminar, espera 20-30 s, muévete y orina otra vez. De madrugada, al baño a la primera gana, igual y sin celular." }
       ]
     }
   ]
