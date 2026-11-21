@@ -8,6 +8,7 @@
           "tasks": [
             { "title": "Cómo amanecí", "options": ["—", "1 Agotado", "2 Cansado", "3 Normal", "4 Bien", "5 Descansado"] },
             { "title": "Dolor de cabeza", "options": ["—", "No", "Leve", "Fuerte"] },
+            { "title": "Nariz tapada", "options": ["—", "No", "Leve", "Fuerte"] },
             { "title": "Ojos secos", "options": ["—", "No", "Sí"] },
             { "title": "Repaso de anoche: clorfeniramina", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas"], "note": "Para cuando llegué muy cansado y no marqué la pirámide de noche." },
             { "title": "Repaso de anoche: melatonina", "options": ["—", "No tomé", "Tomé"] },
@@ -15,6 +16,7 @@
             { "title": "Repaso de anoche: me levantó el chichí", "options": ["—", "No", "1 vez", "2 o más"] },
             { "title": "Peso", "inputs": ["Kg"], "note": "En la báscula al despertar: después del baño, descalzo, sin ropa pesada y antes del café. Copia la medida de openScale." },
             { "title": "Exportar openScale", "note": "openScale → Configuración → Copia de seguridad → Exportar a Descargas" },
+            { "title": "Glucosa en ayunas", "inputs": ["mg/dL"], "note": "Lunes, miércoles y viernes, antes del café y de comer. Menos de 100 es normal; 126 o más, repetir y consultar." },
             "Luz solar 10 min apenas me levante",
             "Poner café",
             { "title": "Cafeína", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas", "3 o más"], "note": "Pastillas de 200 mg. La hora queda marcada sola: sirve para ver si el dolor de cabeza se quita después de la cafeína." },
