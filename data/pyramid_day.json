@@ -13,6 +13,8 @@
             { "title": "Exportar openScale", "note": "openScale → Configuración → Copia de seguridad → Exportar a Descargas" },
             "Luz solar 10 min apenas me levante",
             "Poner café",
+            { "title": "Cafeína", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas", "3 o más"], "note": "Pastillas de 200 mg. La hora queda marcada sola: sirve para ver si el dolor de cabeza se quita después de la cafeína." },
+            { "title": "Modafinilo 200 mg", "options": ["—", "No tomé", "Tomé"], "note": "Recetado lunes, miércoles, viernes y sábado." },
             { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
             { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
             { "title": "Presión esposa", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
