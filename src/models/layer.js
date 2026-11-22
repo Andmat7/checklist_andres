@@ -36,14 +36,19 @@ export function all_tasks(layer) {
   return [...layer.tasks, ...layer.layers.flatMap(all_tasks)];
 }
 
-export function count_checked(layer, checks) {
-  return all_tasks(layer).filter((task) => is_checked(checks, task.id)).length;
+/** Tasks that must be done for the layer to be complete; optional ones are left out. */
+export function required_tasks(layer) {
+  return all_tasks(layer).filter((task) => !task.optional);
 }
 
-/** Ids of every layer, at any depth, whose tasks are all checked. */
+export function count_checked(layer, checks) {
+  return required_tasks(layer).filter((task) => is_checked(checks, task.id)).length;
+}
+
+/** Ids of every layer, at any depth, whose required tasks are all checked. */
 export function completed_layer_ids(layers, checks) {
   return layers.flatMap(all_layers)
-    .filter((layer) => all_tasks(layer).length > 0 && count_checked(layer, checks) === all_tasks(layer).length)
+    .filter((layer) => required_tasks(layer).length > 0 && count_checked(layer, checks) === required_tasks(layer).length)
     .map((layer) => layer.id);
 }
 

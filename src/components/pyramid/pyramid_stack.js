@@ -1,4 +1,4 @@
-import { all_tasks, count_checked } from '../../models/layer.js';
+import { count_checked, required_tasks } from '../../models/layer.js';
 import { escape_html } from '../../services/escape_html.js';
 import { color_of_layer, text_color_on } from '../../theme/palette.js';
 import styles from './pyramid_stack.css.js';
@@ -10,11 +10,11 @@ const thin_row_threshold = 1;
 const capstone_template = /* html */ `<div class="row capstone" aria-hidden="true"></div>`;
 
 const layer_template = (layer, checks, selected_id) => /* html */ `
-  <button type="button" class="row ${count_checked(layer, checks) === all_tasks(layer).length ? 'complete' : ''}
+  <button type="button" class="row ${count_checked(layer, checks) === required_tasks(layer).length ? 'complete' : ''}
     ${height_ratio_of(layer) < thin_row_threshold ? 'thin' : ''}"
     data-layer-id="${escape_html(layer.id)}" aria-pressed="${layer.id === selected_id}">
     <span class="title">${escape_html(layer.title)}</span>
-    <span class="progress">${count_checked(layer, checks)}/${all_tasks(layer).length}</span>
+    <span class="progress">${count_checked(layer, checks)}/${required_tasks(layer).length}</span>
   </button>`;
 
 /** Draws the layers as slices of one triangle; picking a slice emits `layer-select`. */

@@ -6,6 +6,8 @@
         "Pasar carnes a la nevera",
         "Sacar la basura",
         "Aplicar lavado nasal",
+        { "title": "Limpiar la lengua", "optional": true, "note": "Con limpiador o con el borde de una cuchara, de atrás hacia adelante, 5-10 pasadas hasta que salga limpia." },
+        { "title": "Pasar hilo dental", "optional": true, "note": "Entre todos los dientes, sobre todo las muelas de atrás. Si sangra, sigue igual: suele dejar de sangrar en 1-2 semanas." },
         { "title": "Clorfeniramina", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas"] },
         { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"] },
         { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },

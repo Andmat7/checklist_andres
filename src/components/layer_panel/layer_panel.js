@@ -15,7 +15,7 @@ const template = (layer) => /* html */ `
   </section>`;
 
 const title_template = (task) => /* html */ `
-  <span>${escape_html(task.title)}${task.note ? `<small class="note">${escape_html(task.note)}</small>` : ''}</span>`;
+  <span>${escape_html(task.title)}${task.optional ? ' <small class="optional">(opcional)</small>' : ''}${task.note ? `<small class="note">${escape_html(task.note)}</small>` : ''}</span>`;
 
 const task_template = (task, checks) => {
   if (task.options) return answer_template(task, checks);
@@ -70,7 +70,7 @@ const checkbox_template = (task, checks) => /* html */ `
   <li class="${is_checked(checks, task.id) ? 'done' : ''}">
     ${start_template(task, checks)}
     <label>
-      <input type="checkbox" data-task-id="${escape_html(task.id)}" ${is_checked(checks, task.id) ? 'checked' : ''} ${lock(task, checks)}>
+      <input type="checkbox" data-task-id="${escape_html(task.id)}" ${task.optional ? 'data-optional' : ''} ${is_checked(checks, task.id) ? 'checked' : ''} ${lock(task, checks)}>
       ${title_template(task)}
       ${task.price === undefined ? '' : `<span class="price">${format_price(task.price)}</span>`}
     </label>
@@ -125,7 +125,7 @@ export class LayerPanel extends HTMLElement {
   /** Read before the re-render: where the input sits and whether it completed the layer drive the sparkles. */
   #toggle_detail(input) {
     const bounds = input.getBoundingClientRect();
-    const inputs = [...this.shadowRoot.querySelectorAll('ul [data-task-id]')];
+    const inputs = [...this.shadowRoot.querySelectorAll('ul [data-task-id]:not([data-optional])')];
     return {
       task_id: input.dataset.taskId,
       checked: this.#task_fields(input).every(is_done),

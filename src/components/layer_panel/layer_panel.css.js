@@ -42,6 +42,10 @@ styles.replaceSync(/* css */ `
     gap: 8px;
     align-items: flex-start;
   }
+  .optional {
+    font-weight: 500;
+    opacity: 0.7;
+  }
   .note {
     display: block;
     font-size: 0.75rem;
