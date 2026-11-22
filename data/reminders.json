@@ -14,10 +14,10 @@
       "task_ids": ["/Andres/Presión 1", "/Andres/Presión 2"]
     },
     {
-      "title": "Lengua e hilo dental",
-      "body": "Opcional: si te da, limpia la lengua y pasa el hilo.",
+      "title": "Lengua, hilo y crema",
+      "body": "Opcional: si te da, limpia la lengua, pasa el hilo y ponte la crema en dedos e ingle.",
       "time": "22:15",
-      "task_ids": ["/Andres/Limpiar la lengua", "/Andres/Pasar hilo dental"]
+      "task_ids": ["/Andres/Limpiar la lengua", "/Andres/Pasar hilo dental", "/Andres/Crema en dedos e ingle"]
     }
   ]
 }

@@ -57,7 +57,7 @@ const answer_template = (task, checks) => /* html */ `
     ${start_template(task, checks)}
     <label>
       ${title_template(task)}
-      <select data-task-id="${escape_html(task.id)}" ${lock(task, checks)}>
+      <select data-task-id="${escape_html(task.id)}" ${task.optional ? 'data-optional' : ''} ${lock(task, checks)}>
         ${task.options.map((option) => option_template(option, checks.entries?.[task.id]?.answer ?? task.options[0])).join('')}
       </select>
     </label>

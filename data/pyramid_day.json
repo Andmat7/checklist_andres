@@ -15,6 +15,7 @@
             { "title": "Repaso de anoche: doble vaciado", "options": ["—", "No", "Sí"] },
             { "title": "Repaso de anoche: me levantó el chichí", "options": ["—", "No", "1 vez", "2 o más"] },
             { "title": "Peso", "inputs": ["Kg"], "note": "En la báscula al despertar: después del baño, descalzo, sin ropa pesada y antes del café. Copia la medida de openScale." },
+            { "title": "Secar dedos e ingle + crema", "optional": true, "note": "Después del baño: seca primero la ingle y al final los pies (o toalla aparte), secador en frío si puedes. Clotrimazol 1 % o terbinafina, sin betametasona. Medias antes que los calzoncillos." },
             { "title": "Exportar openScale", "note": "openScale → Configuración → Copia de seguridad → Exportar a Descargas" },
             { "title": "Glucosa en ayunas", "inputs": ["mg/dL"], "note": "Lunes, miércoles y viernes, antes del café y de comer. Menos de 100 es normal; 126 o más, repetir y consultar." },
             "Luz solar 10 min apenas me levante",
