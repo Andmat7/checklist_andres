@@ -53,7 +53,7 @@
             { "title": "Peso", "inputs": ["Kg"], "note": "En la báscula al despertar: después del baño, descalzo, sin ropa pesada y antes del café. Copia la medida de openScale." },
             { "title": "Secar dedos e ingle + crema", "optional": true, "note": "Después del baño: seca primero la ingle y al final los pies (o toalla aparte), secador en frío si puedes. Clotrimazol 1 % o terbinafina, sin betametasona. Medias antes que los calzoncillos." },
             { "title": "Exportar openScale", "note": "openScale → Configuración → Copia de seguridad → Exportar a Descargas" },
-            { "title": "Glucosa en ayunas", "inputs": ["mg/dL"], "note": "Lunes, miércoles y viernes, antes del café y de comer. Menos de 100 es normal; 126 o más, repetir y consultar." },
+            { "title": "Glucosa en ayunas", "optional": true, "inputs": ["mg/dL"], "note": "Lunes, miércoles y viernes, antes del café y de comer. Menos de 100 es normal; 126 o más, repetir y consultar." },
             { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
             { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
             { "title": "Presión esposa", "optional": true, "inputs": ["Sistólica", "Diastólica", "Pulso"] }
