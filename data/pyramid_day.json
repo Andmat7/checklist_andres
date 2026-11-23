@@ -7,7 +7,9 @@
           "title": "Despertar",
           "tasks": [
             { "title": "Cómo amanecí", "options": ["—", "1 Agotado", "2 Cansado", "3 Normal", "4 Bien", "5 Descansado"] },
-            { "title": "Dolor de cabeza", "options": ["—", "No", "Leve", "Fuerte"] },
+            { "title": "Dolor de cabeza con nublazón", "options": ["—", "No", "Leve", "Fuerte"] },
+            { "title": "Dolor de cabeza de sinusitis", "options": ["—", "No", "Leve", "Fuerte"], "note": "En la frente o la cara, con la nariz tapada; suele quitarse con el lavado nasal." },
+            { "title": "Dolor de espalda", "options": ["—", "0 Nada", "1 Leve", "2 Medio", "3 Fuerte"], "note": "Cómo amaneció, y si en la noche te despertó." },
             { "title": "Nariz tapada", "options": ["—", "No", "Leve", "Fuerte"] },
             { "title": "Ojos secos", "options": ["—", "No", "Sí"] },
             { "title": "Repaso de anoche: clorfeniramina", "skip_if_logged_last_night": "/Andres/Clorfeniramina", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas"], "note": "Para cuando llegué muy cansado y no marqué la pirámide de noche." },
@@ -107,42 +109,33 @@
           "title": "Dieta",
           "layers": [
             {
-              "title": "Seguridad",
+              "title": "Proteína",
               "tasks": [
-                "Seguridad biológica"
+                "¿Comprada?",
+                { "title": "¿Alistada?", "note": "Descongelada en la nevera desde la noche anterior, o cocinada y lista para servir." }
               ]
             },
             {
-              "title": "Leguminosas",
+              "title": "Verduras",
               "tasks": [
-                "¿Cocinadas?",
-                "¿En agua?",
-                "¿Compradas?"
+                "¿Compradas?",
+                { "title": "¿Lavadas y picadas?", "note": "Picar de una vez para 2-3 días y guardarlas en un recipiente a la vista en la nevera." },
+                { "title": "Porciones hoy", "options": ["—", "0", "1", "2", "3 o más"], "note": "Una porción es un puño de verdura cocida o dos de cruda. Meta: medio plato en cada comida. Para tu esposa, lo que diga su nefrólogo sobre el potasio." }
               ]
             },
             {
-              "title": "Carnes",
+              "title": "Frutas",
               "tasks": [
-                "¿Cocinadas?",
-                "¿Descongeladas?",
-                "¿Compradas?"
+                "¿Compradas?",
+                { "title": "Porciones hoy", "options": ["—", "0", "1", "2 o más"], "note": "Entera, no en jugo. Una porción cabe en la mano." }
               ]
             },
             {
-              "title": "Desayuno",
+              "title": "Granos",
               "tasks": [
-                "Proteína",
-                "Fibra",
-                { "title": "Harinas", "options": ["—", "1", "2", "3 o más"] },
-                { "title": "Sueño 1 h después", "options": ["—", "0 Nada", "1 Leve", "2 Me cuesta concentrarme", "3 Necesito dormir"] },
-                { "title": "Siesta", "inputs": ["Minutos"], "note": "Antes de las 3 pm, con alarma de 20 min. Si no hiciste siesta, pon 0." }
-              ]
-            },
-            {
-              "title": "Almuerzo",
-              "tasks": [
-                "Proteína",
-                "Verdura"
+                { "title": "¿Comprados?", "note": "Frijoles, lentejas o garbanzos." },
+                { "title": "¿En agua?", "note": "En remojo desde la noche anterior, con agua que se bota antes de cocinar." },
+                "¿Cocinados?"
               ]
             }
           ]
@@ -164,20 +157,6 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "title": "Finanzas",
-      "tasks": [
-        "Registrar los gastos del día",
-        "Evitar compras impulsivas"
-      ]
-    },
-    {
-      "title": "Relaciones",
-      "tasks": [
-        "Hablar con alguien que quiero",
-        "Agradecer a alguien"
       ]
     }
   ]
