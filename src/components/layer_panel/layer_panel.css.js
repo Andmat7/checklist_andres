@@ -145,6 +145,10 @@ styles.replaceSync(/* css */ `
     display: flex;
     gap: 6px;
   }
+  .skip {
+    align-items: center;
+    font-size: 0.85rem;
+  }
   input[type="number"] {
     appearance: textfield;
     width: 6.2em;

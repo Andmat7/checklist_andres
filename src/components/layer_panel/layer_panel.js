@@ -44,7 +44,16 @@ const numbers_template = (task, checks) => /* html */ `
     <span class="fields">
       ${task.inputs.map((label) => number_template(task, label, checks)).join('')}
     </span>
+    ${task.skip_label ? skip_template(task, checks) : ''}
   </li>`;
+
+// Checking it logs the label as the answer, so the task counts as done with no numbers.
+const skip_template = (task, checks) => /* html */ `
+  <label class="skip">
+    <input type="checkbox" data-task-id="${escape_html(task.id)}" data-skip="${escape_html(task.skip_label)}" ${task.optional ? 'data-optional' : ''}
+      ${checks.entries?.[task.id]?.answer === task.skip_label ? 'checked' : ''} ${lock(task, checks)}>
+    ${escape_html(task.skip_label)}
+  </label>`;
 
 // The decimal keypad, since a weight like 98.6 needs the point that the numeric one lacks on Android.
 const number_template = (task, label, checks) => /* html */ `
@@ -102,14 +111,19 @@ export class LayerPanel extends HTMLElement {
 
   #on_change(event) {
     if (!event.target.dataset.taskId) return;
+    if (event.target.dataset.skip) return this.#dispatch_toggle(event.target);
     const fields = this.#task_fields(event.target);
     // A half-typed reading waits for the rest; a re-render now would wipe what was typed.
     if (fields.some(is_done) && !fields.every(is_done)) return;
-    const options = { detail: this.#toggle_detail(event.target), bubbles: true, composed: true };
+    this.#dispatch_toggle(event.target);
+  }
+
+  #dispatch_toggle(target) {
+    const options = { detail: this.#toggle_detail(target), bubbles: true, composed: true };
     this.dispatchEvent(new CustomEvent('task-toggle', options));
     // The toggle re-renders the list synchronously, so restore keyboard focus on the same task; a number
     // field only changes on blur, when focus has already moved on, so it is left alone.
-    if (event.target.type !== 'number') this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(event.target.dataset.taskId)}"]`)?.focus();
+    if (target.type !== 'number') this.shadowRoot.querySelector(`[data-task-id="${CSS.escape(target.dataset.taskId)}"]${target.dataset.skip ? '[data-skip]' : ''}`)?.focus();
   }
 
   #on_start(event) {
@@ -119,7 +133,7 @@ export class LayerPanel extends HTMLElement {
   }
 
   #task_fields(input) {
-    return [...this.shadowRoot.querySelectorAll(`ul [data-task-id="${CSS.escape(input.dataset.taskId)}"]`)];
+    return [...this.shadowRoot.querySelectorAll(`ul [data-task-id="${CSS.escape(input.dataset.taskId)}"]:not([data-skip])`)];
   }
 
   /** Read before the re-render: where the input sits and whether it completed the layer drive the sparkles. */
@@ -128,8 +142,9 @@ export class LayerPanel extends HTMLElement {
     const inputs = [...this.shadowRoot.querySelectorAll('ul [data-task-id]:not([data-optional])')];
     return {
       task_id: input.dataset.taskId,
-      checked: this.#task_fields(input).every(is_done),
+      checked: input.dataset.skip ? input.checked : this.#task_fields(input).every(is_done),
       ...(input.tagName === 'SELECT' ? { answer: input.value } : {}),
+      ...(input.dataset.skip ? { answer: input.dataset.skip } : {}),
       ...(input.type === 'number' ? { values: field_values(this.#task_fields(input)) } : {}),
       origin: { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 },
       color: getComputedStyle(this).getPropertyValue('--layer-color').trim(),

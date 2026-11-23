@@ -15,7 +15,7 @@
         { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"] },
         { "title": "Presión 1", "optional": true, "inputs": ["Sistólica", "Diastólica", "Pulso"] },
         { "title": "Presión 2", "optional": true, "inputs": ["Sistólica", "Diastólica", "Pulso"] },
-        { "title": "Presión esposa", "optional": true, "inputs": ["Sistólica", "Diastólica", "Pulso"] },
+        { "title": "Presión esposa", "optional": true, "skip_label": "No la tomé", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
         { "title": "Doble vaciado al acostarme", "note": "Sentado, inclinado hacia adelante, sin pujar. Al terminar, espera 20-30 s, muévete y orina otra vez. De madrugada, al baño a la primera gana, igual y sin celular." },
         { "title": "Alistar la posición para dormir", "note": "De lado, encogido, con una almohada entre las rodillas. Boca arriba, con una almohada debajo de las rodillas. Boca abajo no, porque arquea la espalda." }
       ]
