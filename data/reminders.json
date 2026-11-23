@@ -5,7 +5,7 @@
       "title": "Presión de la mañana",
       "body": "2 tomas sentado, tras 5 min de reposo.",
       "time": "10:30",
-      "task_ids": ["/Andres/Despertar/Presión 1", "/Andres/Despertar/Presión 2"]
+      "task_ids": ["/Andres/Mediciones/Presión 1", "/Andres/Mediciones/Presión 2"]
     },
     {
       "title": "Presión de la noche",
