@@ -56,6 +56,13 @@ function all_layers(layer) {
   return [layer, ...layer.layers.flatMap(all_layers)];
 }
 
+/** A lone layer that only wraps an inner pyramid adds a tap and nothing else, so its inner layers are shown
+ * instead; they keep their ids, so history and reminders still match. */
+export function unwrap_lone_layer(layers) {
+  const [lone] = layers;
+  return layers.length === 1 && lone.tasks.length === 0 && lone.layers.length > 0 ? { layers: lone.layers, depth: 1 } : { layers, depth: 0 };
+}
+
 /** Keeps only the matching tasks and drops the layers left empty. */
 export function filter_layers(layers, keep_task) {
   return layers

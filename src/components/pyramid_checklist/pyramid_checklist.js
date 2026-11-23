@@ -1,5 +1,5 @@
 import { check_task, create_daily_checks, start_task, uncheck_task } from '../../models/daily_checks.js';
-import { completed_layer_ids, filter_layers } from '../../models/layer.js';
+import { completed_layer_ids, filter_layers, unwrap_lone_layer } from '../../models/layer.js';
 import { is_checked } from '../../models/checks.js';
 import { ChecklistStore } from '../../services/storage/checklist_store.js';
 import { current_period } from '../../services/day_period.js';
@@ -26,6 +26,7 @@ export class PyramidChecklist extends HTMLElement {
   #store = new ChecklistStore();
   #checks = this.#store.load(today());
   #layers = [];
+  #depth = 0;
   #fanfare = new VictoryFanfare();
   #reminders = new NativeReminders();
 
@@ -43,7 +44,9 @@ export class PyramidChecklist extends HTMLElement {
     subtitle.textContent = new Date(`${today()}T12:00`).toLocaleDateString('es', { dateStyle: 'full' });
     const file_name = `pyramid_${current_period()}.json`;
     try {
-      this.#layers = this.#without_reviews_done_last_night(await load_pyramid(file_name));
+      const { layers, depth } = unwrap_lone_layer(this.#without_reviews_done_last_night(await load_pyramid(file_name)));
+      this.#layers = layers;
+      this.#depth = depth;
     } catch (error) {
       subtitle.textContent = `No se pudo cargar data/${file_name}`;
       throw error;
@@ -59,7 +62,7 @@ export class PyramidChecklist extends HTMLElement {
   }
 
   #render() {
-    this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks);
+    this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks, this.#depth);
     this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history(), this.#store.load_entries(), this.#store.load_starts());
   }
 
