@@ -7,6 +7,13 @@ export function today() {
   return iso_day(now);
 }
 
+/** The day before today(), whose checks hold last night's routine. */
+export function yesterday() {
+  const date = new Date(`${today()}T12:00`);
+  date.setDate(date.getDate() - 1);
+  return iso_day(date);
+}
+
 /** Local "HH:MM", the precision needed to see when each task gets done. */
 export function clock_time(date) {
   return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;

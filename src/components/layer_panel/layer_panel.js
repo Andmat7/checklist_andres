@@ -22,19 +22,19 @@ const task_template = (task, checks) => {
   return task.inputs ? numbers_template(task, checks) : checkbox_template(task, checks);
 };
 
-// Tapped when the task is read; it then shows that time, and checking the task stamps when it was done.
+// Tapped when a timed task is read; it then shows that time, and checking the task stamps when it was done.
 // Shopping lists carry no starts, so they get no button.
 const start_template = (task, checks) => {
-  if (!checks.starts) return '';
+  if (!task.timed || !checks.starts) return '';
   const started = checks.starts[task.id];
   const label = started ? `Leída a las ${started}` : `Empezar ${escape_html(task.title)}`;
   return /* html */ `
     <button type="button" class="start" data-start-id="${escape_html(task.id)}" ${started ? 'disabled' : ''} aria-label="${label}">${started ?? '▶'}</button>`;
 };
 
-// Starting and completing happen in order: a task is completed only after it was started, so every done task has
-// both times. Tasks checked before starts existed stay editable so they can be unchecked.
-const is_locked = (task, checks) => checks.starts !== undefined && !checks.starts[task.id] && !is_checked(checks, task.id);
+// Starting and completing a timed task happen in order: it is completed only after it was started, so it has both
+// times. Tasks checked before starts existed stay editable so they can be unchecked.
+const is_locked = (task, checks) => task.timed && checks.starts !== undefined && !checks.starts[task.id] && !is_checked(checks, task.id);
 const lock = (task, checks) => (is_locked(task, checks) ? 'disabled' : '');
 
 const numbers_template = (task, checks) => /* html */ `
