@@ -12,13 +12,19 @@
         { "title": "Crema en dedos e ingle", "optional": true, "note": "Piel seca primero. Seguir 1-2 semanas después de que deje de picar." },
         { "title": "Piquiña pies e ingle", "optional": true, "options": ["—", "0 Nada", "1 Leve", "2 Media", "3 Fuerte"], "note": "Cómo estuvo hoy. Debería bajar en 1 semana." },
         { "title": "Mal aliento según mi esposa", "optional": true, "options": ["—", "0 Nada", "1 Leve", "2 Medio", "3 Fuerte"] },
+        { "title": "Café hoy", "options": ["—", "0 tazas", "1 taza", "2 tazas", "3 o más"] },
+        { "title": "Última taza antes de las 2 pm", "options": ["—", "Sí", "No"], "note": "La cafeína dura 5-6 h en el cuerpo; después de las 2 pm todavía está a medianoche." },
+        { "title": "Sueño después de comer", "options": ["—", "0 Nada", "1 Leve", "2 Medio", "3 Fuerte"], "note": "Lo más fuerte que tuve hoy." },
+        { "title": "Nada de líquido desde las 10 pm", "options": ["—", "Sí", "No"], "note": "Menos ganas de orinar en la madrugada, y menos dolor de espalda con la vejiga llena." },
         { "title": "Clorfeniramina", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas"] },
-        { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"] },
+        { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"], "note": "A la misma hora todas las noches, ~1 h antes de acostarte (11 pm)." },
+        { "title": "Medicinas de la noche, cuándo", "options": ["—", "Ahora", "Hace ~30 min", "Hace 1 h o más"], "note": "Por si las tomaste sin el celular a la mano." },
         { "title": "Presión 1", "optional": true, "inputs": ["Sistólica", "Diastólica", "Pulso"] },
         { "title": "Presión 2", "optional": true, "inputs": ["Sistólica", "Diastólica", "Pulso"] },
         { "title": "Presión esposa", "optional": true, "skip_label": "No la tomé", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
         { "title": "Doble vaciado al acostarme", "note": "Sentado, inclinado hacia adelante, sin pujar. Al terminar, espera 20-30 s, muévete y orina otra vez. De madrugada, al baño a la primera gana, igual y sin celular." },
-        { "title": "Alistar la posición para dormir", "note": "De lado, encogido, con una almohada entre las rodillas. Boca arriba, con una almohada debajo de las rodillas. Boca abajo no, porque arquea la espalda." }
+        { "title": "Alistar la posición para dormir", "note": "De lado, encogido, con una almohada entre las rodillas. Boca arriba, con una almohada debajo de las rodillas. Boca abajo no, porque arquea la espalda." },
+        { "title": "Suelto el celular y apago la luz", "note": "Márcalo justo al apagar: la hora queda como tu hora real de acostarte. Meta: 12 de la noche." }
       ]
     }
   ]

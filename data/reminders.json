@@ -1,6 +1,12 @@
 {
-  "open_app_at": "09:00",
+  "open_app_at": "08:00",
   "reminders": [
+    {
+      "title": "Sol 10 min",
+      "body": "Sal 10 min al sol apenas te levantes.",
+      "time": "08:10",
+      "task_ids": ["/Andres/Sol/Luz solar 10 min apenas me levante"]
+    },
     {
       "title": "Presión de la mañana",
       "body": "2 tomas sentado, tras 5 min de reposo.",

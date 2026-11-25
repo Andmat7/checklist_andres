@@ -4,6 +4,14 @@
       "title": "Andres",
       "layers": [
         {
+          "title": "Sol",
+          "color": "#ffb347",
+          "height_ratio": 0.33,
+          "tasks": [
+            { "title": "Luz solar 10 min apenas me levante", "note": "Afuera, sin gafas de sol, mirando hacia el cielo (no al sol). Es lo que le dice al cuerpo a qué hora empieza el día: hazlo a la misma hora todos los días." }
+          ]
+        },
+        {
           "title": "Despertar",
           "tasks": [
             { "title": "Cómo amanecí", "options": ["—", "1 Agotado", "2 Cansado", "3 Normal", "4 Bien", "5 Descansado"] },
@@ -16,10 +24,9 @@
             { "title": "Repaso de anoche: melatonina", "skip_if_logged_last_night": "/Andres/Melatonina", "options": ["—", "No tomé", "Tomé"] },
             { "title": "Repaso de anoche: doble vaciado", "skip_if_logged_last_night": "/Andres/Doble vaciado al acostarme", "options": ["—", "No", "Sí"] },
             { "title": "Repaso de anoche: me levantó el chichí", "options": ["—", "No", "1 vez", "2 o más"] },
-            "Luz solar 10 min apenas me levante",
+            { "title": "Por qué no me volví a dormir", "options": ["—", "Me dormí rápido", "Orinar", "Espalda", "Ansiedad", "Calor", "Otro"], "note": "Lo que más me mantuvo despierto en la noche." },
             "Poner café",
-            { "title": "Cafeína", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas", "3 o más"], "note": "Pastillas de 200 mg. La hora queda marcada sola: sirve para ver si el dolor de cabeza se quita después de la cafeína." },
-            { "title": "Modafinilo 200 mg", "options": ["—", "No tomé", "Tomé"], "note": "Recetado lunes, miércoles, viernes y sábado." }
+            { "title": "Modafinilo 200 mg", "options": ["—", "No tomé", "Tomé ahora", "Tomé hace ~30 min", "Tomé hace 1 h o más"], "note": "Recetado lunes, miércoles, viernes y sábado, al levantarte. Nunca después de las 12: dura 12-15 h y quita el sueño de la noche." }
           ]
         },
         {
