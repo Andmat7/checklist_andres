@@ -122,14 +122,21 @@ public final class WatchExport {
         JSONArray result = new JSONArray();
         for (SleepSessionRecord session : sessions) {
             JSONObject stage_minutes = new JSONObject();
+            // Each stage keeps its own times too, so the night can be drawn piece by piece and the wake-ups placed.
+            JSONArray stages = new JSONArray();
             for (SleepSessionRecord.Stage stage : session.getStages()) {
                 String name = stage_name(stage.getType());
                 stage_minutes.put(name, stage_minutes.optLong(name) + Duration.between(stage.getStartTime(), stage.getEndTime()).toMinutes());
+                stages.put(new JSONObject()
+                    .put("stage", name)
+                    .put("start", stage.getStartTime().atOffset(session.getStartZoneOffset()).toString())
+                    .put("end", stage.getEndTime().atOffset(session.getStartZoneOffset()).toString()));
             }
             result.put(new JSONObject()
                 .put("start", session.getStartTime().atOffset(session.getStartZoneOffset()).toString())
                 .put("end", session.getEndTime().atOffset(session.getEndZoneOffset()).toString())
-                .put("stage_minutes", stage_minutes));
+                .put("stage_minutes", stage_minutes)
+                .put("stages", stages));
         }
         return result;
     }
