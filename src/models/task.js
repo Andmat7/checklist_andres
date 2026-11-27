@@ -10,9 +10,10 @@
  * @property {string} [skip_label] Only on tasks with inputs: a box to check instead of the numbers, e.g. "No la tomé".
  * @property {boolean} [timed] Shows a start button first, so the time from reading the task to doing it is measured.
  * @property {string} [skip_if_logged_last_night] Id of a night task; when it was logged last night this morning review is hidden.
+ * @property {{ task: string, answer: string }} [skip_if_answered] Hides the task while another task of today holds that answer, e.g. no reason to give when nothing woke you.
  */
 
-/** In the JSON a task is a plain title, `{ title, price }` when it is something to buy, `{ title, options }` to log an answer, or `{ title, inputs }` to log numbers; any of them may add a `note`, `optional: true`, `skip_label`, `timed: true` or `skip_if_logged_last_night`. */
+/** In the JSON a task is a plain title, `{ title, price }` when it is something to buy, `{ title, options }` to log an answer, or `{ title, inputs }` to log numbers; any of them may add a `note`, `optional: true`, `skip_label`, `timed: true`, `skip_if_logged_last_night` or `skip_if_answered`. */
 export function parse_task(source, layer_id) {
   const { title, ...fields } = typeof source === 'string' ? { title: source } : source;
   return { id: `${layer_id}/${title}`, title, ...defined_fields(fields) };
@@ -20,6 +21,11 @@ export function parse_task(source, layer_id) {
 
 function defined_fields(fields) {
   return Object.fromEntries(Object.entries(fields).filter(([, value]) => value !== undefined && value !== false));
+}
+
+/** @param {Task} task @param {import('./checks.js').Checks} checks */
+export function is_skipped_by_answer(task, checks) {
+  return Boolean(task.skip_if_answered) && checks.entries?.[task.skip_if_answered.task]?.answer === task.skip_if_answered.answer;
 }
 
 export function total_price(tasks) {

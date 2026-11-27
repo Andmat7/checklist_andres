@@ -1,6 +1,7 @@
 import { check_task, create_daily_checks, start_task, uncheck_task } from '../../models/daily_checks.js';
 import { completed_layer_ids, filter_layers, unwrap_lone_layer } from '../../models/layer.js';
 import { is_checked } from '../../models/checks.js';
+import { is_skipped_by_answer } from '../../models/task.js';
 import { ChecklistStore } from '../../services/storage/checklist_store.js';
 import { current_period } from '../../services/day_period.js';
 import { load_pyramid } from '../../services/pyramid_source.js';
@@ -62,8 +63,13 @@ export class PyramidChecklist extends HTMLElement {
   }
 
   #render() {
-    this.shadowRoot.querySelector('pyramid-view').show(this.#layers, this.#checks, this.#depth);
+    this.shadowRoot.querySelector('pyramid-view').show(this.#visible_layers(this.#checks), this.#checks, this.#depth);
     this.shadowRoot.querySelector('history-calendar').show(this.#store.load_history(), this.#store.load_entries(), this.#store.load_starts());
+  }
+
+  /** Follow-up questions depend on today's answers, so they are filtered on every change, not once at load. */
+  #visible_layers(checks) {
+    return filter_layers(this.#layers, (task) => !is_skipped_by_answer(task, checks));
   }
 
   #start(task_id) {
@@ -75,12 +81,12 @@ export class PyramidChecklist extends HTMLElement {
 
   #toggle(event) {
     const checks = this.#checks.day === today() ? this.#checks : create_daily_checks(today());
-    const completed_before = completed_layer_ids(this.#layers, checks);
+    const completed_before = completed_layer_ids(this.#visible_layers(checks), checks);
     this.#checks = apply_toggle(checks, event.detail);
     this.#store.save(this.#checks);
     // Progress shows on every enclosing layer, so the whole pyramid redraws.
     this.#render();
-    const completed_now = completed_layer_ids(this.#layers, this.#checks);
+    const completed_now = completed_layer_ids(this.#visible_layers(this.#checks), this.#checks);
     if (completed_now.some((layer_id) => !completed_before.includes(layer_id))) this.#fanfare.play();
     this.#sync_reminders();
   }

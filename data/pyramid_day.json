@@ -24,7 +24,7 @@
             { "title": "Repaso de anoche: melatonina", "skip_if_logged_last_night": "/Andres/Melatonina", "options": ["—", "No tomé", "Tomé"] },
             { "title": "Repaso de anoche: doble vaciado", "skip_if_logged_last_night": "/Andres/Doble vaciado al acostarme", "options": ["—", "No", "Sí"] },
             { "title": "Repaso de anoche: me levantó el chichí", "options": ["—", "No", "1 vez", "2 o más"] },
-            { "title": "Por qué no me volví a dormir", "options": ["—", "Me dormí rápido", "Orinar", "Espalda", "Ansiedad", "Calor", "Otro"], "note": "Lo que más me mantuvo despierto en la noche." },
+            { "title": "Por qué no me volví a dormir", "skip_if_answered": { "task": "/Andres/Despertar/Repaso de anoche: me levantó el chichí", "answer": "No" }, "options": ["—", "Me dormí rápido", "Orinar", "Espalda", "Ansiedad", "Calor", "Otro"], "note": "Lo que más me mantuvo despierto en la noche." },
             "Poner café",
             { "title": "Modafinilo 200 mg", "options": ["—", "No tomé", "Tomé ahora", "Tomé hace ~30 min", "Tomé hace 1 h o más"], "note": "Recetado lunes, miércoles, viernes y sábado, al levantarte. Nunca después de las 12: dura 12-15 h y quita el sueño de la noche." }
           ]
@@ -87,7 +87,6 @@
           "title": "Mediciones",
           "tasks": [
             { "title": "Peso", "inputs": ["Kg"], "note": "En la báscula al despertar: después del baño, descalzo, sin ropa pesada y antes del café. Copia la medida de openScale." },
-            { "title": "Secar dedos e ingle + crema", "optional": true, "note": "Después del baño: seca primero la ingle y al final los pies (o toalla aparte), secador en frío si puedes. Clotrimazol 1 % o terbinafina, sin betametasona. Medias antes que los calzoncillos." },
             { "title": "Exportar openScale", "optional": true, "options": ["—", "Exporté", "No exporté"], "note": "openScale → Configuración → Copia de seguridad → Exportar a Descargas" },
             { "title": "Glucosa en ayunas", "optional": true, "skip_label": "No la tomé", "inputs": ["mg/dL"], "note": "Lunes, miércoles y viernes, antes del café y de comer. Menos de 100 es normal; 126 o más, repetir y consultar." },
             { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
@@ -108,9 +107,11 @@
         {
           "title": "Baño",
           "tasks": [
-            "Alistar toalla",
-            "Alistar ropa limpia",
-            "Bañarme"
+            "Toalla en el baño",
+            "Ropa limpia en el baño",
+            { "title": "Crema en el baño", "note": "Clotrimazol 1 % o terbinafina, sin betametasona." },
+            "Bañarme",
+            { "title": "Secar dedos e ingle + crema", "note": "Seca primero la ingle y al final los pies (o toalla aparte), secador en frío si puedes. Medias antes que los calzoncillos." }
           ]
         },
         {
