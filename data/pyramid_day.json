@@ -37,12 +37,17 @@
             {
               "title": "Hice",
               "options": [
-                "Nada",
-                "Flexiones",
-                "Sentadillas",
-                "Flexiones y sentadillas",
-                "Caminar"
-              ]
+                "Hoy descanso",
+                "1 flexión",
+                "1 sentadilla",
+                "1 flexión y 1 sentadilla",
+                "Varias flexiones",
+                "Varias sentadillas",
+                "Varias flexiones y sentadillas",
+                "Caminar",
+                "Estirar la espalda"
+              ],
+              "note": "Con una sola ya cuenta. Si te provoca más, sigue; si no, también está bien."
             }
           ]
         },
@@ -64,12 +69,17 @@
             {
               "title": "Hice",
               "options": [
-                "Nada",
-                "Flexiones",
-                "Sentadillas",
-                "Flexiones y sentadillas",
-                "Caminar"
-              ]
+                "Hoy descanso",
+                "1 flexión",
+                "1 sentadilla",
+                "1 flexión y 1 sentadilla",
+                "Varias flexiones",
+                "Varias sentadillas",
+                "Varias flexiones y sentadillas",
+                "Caminar",
+                "Estirar la espalda"
+              ],
+              "note": "Con una sola ya cuenta. Si te provoca más, sigue; si no, también está bien."
             }
           ]
         },
@@ -96,6 +106,14 @@
           ]
         },
         {
+          "title": "Baño",
+          "tasks": [
+            "Alistar toalla",
+            "Alistar ropa limpia",
+            "Bañarme"
+          ]
+        },
+        {
           "title": "Ejercicio 2",
           "color": "#ffd166",
           "height_ratio": 0.33,
@@ -103,12 +121,17 @@
             {
               "title": "Hice",
               "options": [
-                "Nada",
-                "Flexiones",
-                "Sentadillas",
-                "Flexiones y sentadillas",
-                "Caminar"
-              ]
+                "Hoy descanso",
+                "1 flexión",
+                "1 sentadilla",
+                "1 flexión y 1 sentadilla",
+                "Varias flexiones",
+                "Varias sentadillas",
+                "Varias flexiones y sentadillas",
+                "Caminar",
+                "Estirar la espalda"
+              ],
+              "note": "Con una sola ya cuenta. Si te provoca más, sigue; si no, también está bien."
             }
           ]
         },
@@ -155,12 +178,17 @@
             {
               "title": "Hice",
               "options": [
-                "Nada",
-                "Flexiones",
-                "Sentadillas",
-                "Flexiones y sentadillas",
-                "Caminar"
-              ]
+                "Hoy descanso",
+                "1 flexión",
+                "1 sentadilla",
+                "1 flexión y 1 sentadilla",
+                "Varias flexiones",
+                "Varias sentadillas",
+                "Varias flexiones y sentadillas",
+                "Caminar",
+                "Estirar la espalda"
+              ],
+              "note": "Con una sola ya cuenta. Si te provoca más, sigue; si no, también está bien."
             }
           ]
         }

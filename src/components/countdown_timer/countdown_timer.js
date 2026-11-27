@@ -3,7 +3,7 @@ import { Alarm } from './alarm.js';
 import styles from './countdown_timer.css.js';
 import { ScreenAwake } from './screen_awake.js';
 
-const minute_options = [1, 3, 5];
+const minute_options = [1, 3, 5, 10];
 const milliseconds_per_minute = 60_000;
 const tick_milliseconds = 200;
 const toggle_labels = { ready: 'Iniciar', running: 'Pausar', paused: 'Seguir', finished: 'Otra vez' };

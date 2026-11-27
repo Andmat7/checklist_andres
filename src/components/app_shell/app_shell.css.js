@@ -36,15 +36,15 @@ styles.replaceSync(/* css */ `
     outline: 2px solid #ffffff;
     outline-offset: 2px;
   }
-  /* Three sections must share one row on a 360px phone. */
+  /* Four sections must share one row on a 360px phone. */
   @media (max-width: 420px) {
     nav {
       gap: 4px;
     }
     a {
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
+      padding: 8px 6px;
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
     }
   }
 `);
