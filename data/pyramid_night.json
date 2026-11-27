@@ -15,6 +15,8 @@
         { "title": "Café hoy", "options": ["—", "0 tazas", "1 taza", "2 tazas", "3 o más"] },
         { "title": "Última taza antes de las 2 pm", "options": ["—", "Sí", "No"], "note": "La cafeína dura 5-6 h en el cuerpo; después de las 2 pm todavía está a medianoche." },
         { "title": "Sueño después de comer", "options": ["—", "0 Nada", "1 Leve", "2 Medio", "3 Fuerte"], "note": "Lo más fuerte que tuve hoy." },
+        { "title": "Mente clara hoy", "options": ["—", "1 Muy nublada", "2 Nublada", "3 Normal", "4 Clara", "5 Muy clara"], "note": "Cómo pude concentrarme y analizar cosas hoy, en general." },
+        { "title": "Peor momento de la mente", "skip_if_answered": { "task": "/Andres/Mente clara hoy", "answer": "5 Muy clara" }, "options": ["—", "Mañana", "Después de comer", "Tarde", "Noche", "Todo el día", "Ninguno"] },
         { "title": "Nada de líquido desde las 10 pm", "options": ["—", "Sí", "No"], "note": "Menos ganas de orinar en la madrugada, y menos dolor de espalda con la vejiga llena." },
         { "title": "Clorfeniramina", "options": ["—", "0 pastillas", "1 pastilla", "2 pastillas"] },
         { "title": "Melatonina", "options": ["—", "No tomé", "Tomé"], "note": "A la misma hora todas las noches, ~1 h antes de acostarte (11 pm)." },

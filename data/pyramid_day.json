@@ -25,6 +25,7 @@
             { "title": "Repaso de anoche: doble vaciado", "skip_if_logged_last_night": "/Andres/Doble vaciado al acostarme", "options": ["—", "No", "Sí"] },
             { "title": "Repaso de anoche: me levantó el chichí", "options": ["—", "No", "1 vez", "2 o más"] },
             { "title": "Por qué no me volví a dormir", "skip_if_answered": { "task": "/Andres/Despertar/Repaso de anoche: me levantó el chichí", "answer": "No" }, "options": ["—", "Me dormí rápido", "Orinar", "Espalda", "Ansiedad", "Calor", "Otro"], "note": "Lo que más me mantuvo despierto en la noche." },
+            { "title": "Vaso de agua", "note": "Apenas te levantes, antes del café. Con el CPAP toda la noche, el cuerpo amanece seco." },
             "Poner café",
             { "title": "Modafinilo 200 mg", "options": ["—", "No tomé", "Tomé ahora", "Tomé hace ~30 min", "Tomé hace 1 h o más"], "note": "Recetado lunes, miércoles, viernes y sábado, al levantarte. Nunca después de las 12: dura 12-15 h y quita el sueño de la noche." }
           ]
@@ -91,7 +92,10 @@
             { "title": "Glucosa en ayunas", "optional": true, "skip_label": "No la tomé", "inputs": ["mg/dL"], "note": "Lunes, miércoles y viernes, antes del café y de comer. Menos de 100 es normal; 126 o más, repetir y consultar." },
             { "title": "Presión 1", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
             { "title": "Presión 2", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
-            { "title": "Presión esposa", "optional": true, "skip_label": "No la tomé", "inputs": ["Sistólica", "Diastólica", "Pulso"] }
+            { "title": "Presión esposa", "optional": true, "skip_label": "No la tomé", "inputs": ["Sistólica", "Diastólica", "Pulso"] },
+            { "title": "Glucosa 1 h después del desayuno", "optional": true, "skip_label": "No la tomé", "inputs": ["mg/dL"], "note": "Solo 2 días esta semana. Cuenta la hora desde el primer bocado." },
+            { "title": "Glucosa 2 h después del desayuno", "optional": true, "skip_label": "No la tomé", "inputs": ["mg/dL"], "note": "Menos de 140 es normal; de 140 a 179, repetir otro día; 180 o más, consultar pronto." },
+            { "title": "Cuestionarios de la mente", "optional": true, "skip_label": "No los hice", "inputs": ["PHQ-9", "GAD-7", "Epworth"], "note": "Una sola vez, gratis en internet (busca cada nombre). PHQ-9 = ánimo (0-27), GAD-7 = ansiedad (0-21), Epworth = somnolencia (0-24). Anota el puntaje total de cada uno; son para llevarle al médico." }
           ]
         },
         {
@@ -124,6 +128,13 @@
             "Medicinas",
             "Entrar potes",
             "Alistar las chanclas"
+          ]
+        },
+        {
+          "title": "Mente",
+          "tasks": [
+            { "title": "25 min con Modo concentración", "optional": true, "options": ["—", "Hice", "No hice"], "note": "Prende el Modo concentración y haz 25 min seguidos la tarea que más análisis te pida. Si te distraes, vuelve sin regañarte." },
+            { "title": "Merienda de proteína 2-3 pm", "optional": true, "options": ["—", "Comí", "No comí"], "note": "Huevo, yogur o maní. Entre el desayuno y la cena pasan 11 h; mira si cambia la mente en la tarde." }
           ]
         },
         {
