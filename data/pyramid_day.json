@@ -95,6 +95,28 @@
           ]
         },
         {
+          "title": "Ejercicio 2",
+          "color": "#ffd166",
+          "height_ratio": 0.33,
+          "tasks": [
+            {
+              "title": "Hice",
+              "options": [
+                "Hoy descanso",
+                "1 flexión",
+                "1 sentadilla",
+                "1 flexión y 1 sentadilla",
+                "Varias flexiones",
+                "Varias sentadillas",
+                "Varias flexiones y sentadillas",
+                "Caminar",
+                "Estirar la espalda"
+              ],
+              "note": "Con una sola ya cuenta. Si te provoca más, sigue; si no, también está bien."
+            }
+          ]
+        },
+        {
           "title": "Sueño 2",
           "tasks": [
             "Agua",
@@ -102,6 +124,28 @@
             "Medicinas",
             "Entrar potes",
             "Alistar las chanclas"
+          ]
+        },
+        {
+          "title": "Ejercicio 3",
+          "color": "#ffd166",
+          "height_ratio": 0.33,
+          "tasks": [
+            {
+              "title": "Hice",
+              "options": [
+                "Hoy descanso",
+                "1 flexión",
+                "1 sentadilla",
+                "1 flexión y 1 sentadilla",
+                "Varias flexiones",
+                "Varias sentadillas",
+                "Varias flexiones y sentadillas",
+                "Caminar",
+                "Estirar la espalda"
+              ],
+              "note": "Con una sola ya cuenta. Si te provoca más, sigue; si no, también está bien."
+            }
           ]
         },
         {
@@ -115,7 +159,7 @@
           ]
         },
         {
-          "title": "Ejercicio 2",
+          "title": "Ejercicio 4",
           "color": "#ffd166",
           "height_ratio": 0.33,
           "tasks": [
@@ -172,7 +216,7 @@
           ]
         },
         {
-          "title": "Ejercicio 3",
+          "title": "Ejercicio 5",
           "color": "#ffd166",
           "height_ratio": 0.33,
           "tasks": [
